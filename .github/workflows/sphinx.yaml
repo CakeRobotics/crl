@@ -1,0 +1,39 @@
+# From: https://github.com/ammaraskar/sphinx-action-test/blob/master/.github/workflows/default.yml
+# See also: https://github.com/marketplace/actions/sphinx-build
+
+name: sphinx
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+    - name: Commit documentation changes
+      run: |
+        git clone https://github.com/cakerobotics/crl.git --branch main --single-branch main
+        cp -r docs/_build/html/* gh-pages/
+        cd gh-pages
+        touch .nojekyll
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Add documentation" -a || true
+        # The above command will fail if no changes were present, so we ignore
+        # that.
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: gh-pages
+        directory: gh-pages
+        force: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
