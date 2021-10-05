@@ -21,19 +21,21 @@ jobs:
     - name: Commit documentation changes
       run: |
         git clone https://github.com/cakerobotics/crl.git --branch main --single-branch main
-        cp -r docs/_build/html/* gh-pages/
-        cd gh-pages
         touch .nojekyll
+        mkdir -p docs/latest
+        cp -r docs/_build/html/* docs/latest
+        mv docs/latest/_static docs/latest/static
+        find docs/latest -type f -print0 | xargs -0 sed -i "s/_static/static/g"
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add .
+        git add docs/latest
         git commit -m "Add documentation" -a || true
         # The above command will fail if no changes were present, so we ignore
         # that.
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        branch: gh-pages
-        directory: gh-pages
+        branch: refs/heads/gh-pages
+        directory: docs/latest
         force: true
         github_token: ${{ secrets.GITHUB_TOKEN }}

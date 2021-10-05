@@ -1,0 +1,5 @@
+sphinx
+furo
+sphinxext-opengraph
+sphinx-tabs
+sphinx-inline-tabs
