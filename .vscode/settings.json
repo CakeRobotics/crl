@@ -1,0 +1,14 @@
+{
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "python.pythonPath": "venv/bin/python",
+    "python.analysis.extraPaths": ["/opt/ros2/foxy/lib/python3.9/site-packages"],
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        "**/*.egg-info": true
+    },
+    "restructuredtext.confPath": "${workspaceFolder}/docs/source"
+}
