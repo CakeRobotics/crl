@@ -1,0 +1,5 @@
+name: test-project
+hardware:
+  wheels-1:
+    type: wheels
+    sim: true
