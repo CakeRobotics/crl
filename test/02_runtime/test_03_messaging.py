@@ -8,7 +8,7 @@ import rclpy.qos
 
 def test_ros_messaging():
 
-    robot = Robot()
+    robot = Robot({})
     assert robot.health()
 
     @robot.runtime.run_in_event_loop

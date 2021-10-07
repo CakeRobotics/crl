@@ -9,7 +9,7 @@ def test_ros_messaging():
     payload = f'test_message_{random_string()}'
     topic = '/test_topic_whrwbd' # Hard-coded for testing purposes: `ros2 topic echo /test_topic_whrwbd std_msgs/msg/String`
 
-    robot = Robot()
+    robot = Robot({})
     assert robot.health()
 
     publisher = robot.runtime.ros_interface.create_publisher(String, topic, 10, thread_check=False)

@@ -3,7 +3,7 @@ import cake
 
 
 def test_uninitialized():
-    robot = cake.Robot()
+    robot = cake.Robot({})
     with pytest.raises(cake.exceptions.UndefinedHardware):
         robot.wheels.set_speed(2)  # type: ignore
     robot.shutdown()

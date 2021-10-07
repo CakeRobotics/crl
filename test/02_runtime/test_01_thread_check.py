@@ -5,14 +5,14 @@ from std_msgs.msg import String
 
 
 def test_thread_check_false():
-    robot = Robot()
+    robot = Robot({})
     assert robot.health()
     check = robot.runtime.am_i_running_in_event_loop_thread()
     assert check == False
     robot.shutdown()
 
 def test_thread_check_true():
-    robot = Robot()
+    robot = Robot({})
     assert robot.health()
     @robot.runtime.run_in_event_loop
     async def body():
@@ -22,7 +22,7 @@ def test_thread_check_true():
     robot.shutdown()
 
 def test_ros_interface_thread_restriction():
-    robot = Robot()
+    robot = Robot({})
     assert robot.health()
     with pytest.raises(Exception, match='This function can only be called from event loop thread.'):
         robot.runtime.ros_interface.create_publisher(String, '/something', 10)

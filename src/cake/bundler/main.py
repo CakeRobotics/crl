@@ -1,14 +1,14 @@
 import argparse
 from os.path import join
 
-from cake.utils.load_props import load_props
+from cake.utils.load_props_from_file import load_props_from_file
 from .get_dockerfile import get_dockerfile
 
 
 def main():
     args = parse_args()
     project_dir = args.project_dir
-    props = load_props(project_dir)
+    props = load_props_from_file(project_dir)
     dockerfile_content = get_dockerfile(props)
     dockerfile_target_path = join(project_dir, 'Dockerfile')
     with open(dockerfile_target_path, 'w') as f:

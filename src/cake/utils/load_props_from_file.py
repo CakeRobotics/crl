@@ -2,7 +2,7 @@ import json, yaml
 from os.path import exists, isdir, join
 
 
-def load_props(project_dir):
+def load_props_from_file(project_dir):
     _assert_valid_project_dir(project_dir)
     yaml_path = join(project_dir, 'props.yaml')
     if exists(yaml_path):
