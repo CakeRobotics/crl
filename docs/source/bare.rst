@@ -142,7 +142,8 @@ Running the Robot Program
         If just you want to run the program in a simulation environment:
 
         - Add ``--sim`` argument to ``cake`` command. This will tell cake to
-          disable hardware operations, and use *rosbridge* for actuator/sensor operations.
+          disable hardware operations, and communicate with a simulation
+          container for actuator/sensor operations.
 
         - Before running, make sure that Gazebo is installed.
 

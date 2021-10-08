@@ -175,8 +175,7 @@ Simulation
 A simulation build differs from a normal build in that,
 the docker container doesn't work with hardware.
 Instead, it communicates with a separate simulation container.
-The communication is achieved via ROS messaging system
-over *rosbridge*.
+The communication is achieved via DDS on UDP.
 
 In practice, this means that before runnnig the code, you should run a
 cake simulation container:
