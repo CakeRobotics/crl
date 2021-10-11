@@ -147,3 +147,4 @@ cython_debug/
 !**/hardware/wheels
 !**/03_modules/wheels
 docs/source/_build
+examples/*/Dockerfile
