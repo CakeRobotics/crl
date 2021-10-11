@@ -7,9 +7,9 @@ import cake
 def main():
     robot = cake.Robot()
     while True:
-        robot.wheels.set_speed(2)
+        robot.wheels.set_speed(0.5)
         time.sleep(4)
-        robot.wheels.set_speed(-2)
+        robot.wheels.set_speed(-0.5)
         time.sleep(4)
 
 
