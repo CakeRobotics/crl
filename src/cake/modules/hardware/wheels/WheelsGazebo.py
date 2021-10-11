@@ -16,7 +16,7 @@ class WheelsGazebo(WheelsBase):
     @run_in_event_loop
     async def _init_topic_handles(self):
         self._velocity_publisher = self.robot.runtime.ros_interface.create_publisher(
-            Twist, '/cake/wheels/vel_cmd', rclpy.qos.HistoryPolicy.KEEP_LAST
+            Twist, '/cake/wheels/cmd_vel', rclpy.qos.HistoryPolicy.KEEP_LAST
         )
 
     @run_in_event_loop
