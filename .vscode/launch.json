@@ -10,7 +10,8 @@
             "request": "launch",
             "module": "pytest",
             "args": [
-                "-x"
+                "-x",
+                "--ignore=examples"
             ]
         },
         {

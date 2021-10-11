@@ -14,3 +14,10 @@ RUN pip3 install numpy scipy
 COPY . /app
 CMD ["python3", "/app/main.py"]"""
     assert expected_lines in dockerfile_content
+
+
+def test_get_dockerfile_with_local_crl():
+    dockerfile_content = cake.bundler.get_dockerfile.get_dockerfile({}, local_crl=True)
+    assert 'COPY crl /crl' in dockerfile_content
+    assert 'WORKDIR /crl' in dockerfile_content
+    assert 'pip3 install .' in dockerfile_content

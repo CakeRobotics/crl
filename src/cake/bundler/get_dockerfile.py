@@ -2,11 +2,13 @@ from datetime import datetime
 import jinja2
 import os.path
 
-
-def get_dockerfile(props):
+# local_crl: Use COPY to copy current CRL library to build the image, instead of
+# pulling CRL from GitHub.
+#
+def get_dockerfile(props, local_crl=False):
     template = _load_jinja_template()
     args = _get_template_args(props)
-    dockerfile_content = template.render(**args)
+    dockerfile_content = template.render(local_crl=local_crl, **args)
     return dockerfile_content
 
 
