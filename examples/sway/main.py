@@ -5,17 +5,7 @@ import cake
 
 
 def main():
-    props = {
-        'name': 'name',
-        'hardware': {
-            'wheels-1': {
-                'type': 'wheels',
-                'sim': True,
-            }
-        }
-    }
-
-    robot = cake.Robot(props)
+    robot = cake.Robot()
     while True:
         robot.wheels.set_speed(2)
         time.sleep(4)
