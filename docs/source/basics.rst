@@ -182,10 +182,10 @@ cake simulation container:
 
 ::
 
-    docker run --rm --network=host cakerobotics/sim
+    docker run --rm -t -p 8080:8080 --name=sim cakerobotics/sim
 
 After running this, you should be able to see the simulation environment
-at http://localhost:2000/
+at http://localhost:8080/
 
 Then you can run bundler:
 
@@ -197,13 +197,13 @@ Build the image:
 
 ::
 
-    docker build --tag=my-cool-robot:v1-sim .
+    docker build . --tag=my-cool-robot:v1-sim
 
 Run the container:
 
 ::
 
-    docker run --rm my-cool-robot:v1-sim
+    docker run --rm --network=container:sim my-cool-robot:v1-sim
 
 Now the robot should be wandering in the simulation world!
 
