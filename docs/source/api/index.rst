@@ -7,6 +7,9 @@ Full Reference
 Props File
 ================
 
+About Props File
+----------------
+
 Props can be provided in three ways:
 
 1. **Using the cloud service UI:** In this case, you don't need to read
@@ -25,15 +28,21 @@ Props can be provided in three ways:
 dynamically generated. However, you probably shouldn't use it as it makes the
 project more complicated. Also, this variant can't be used with *bundler*.
 
-Props file contains keys and values that are described below:
+Specifications
+---------------
+
+Top Level Keys
+_____________________
+
+Props file contains the following top level keys and values:
 
 - ``name``: Name of the project
 - ``author``: Author of the project *(optional)*
 - ``pip_requirements``: PyPI dependencies *(required if using bundler)*
 - ``hardware``: Hardware of the robot. See the section below.
 
-Hardware Props
-==============
+Hardware Definitions
+_____________________
 
 Hardware props go under ``hardware`` key of the props file. Each set of hardware
 (e.g. wheels, camera, lidar)
