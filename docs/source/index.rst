@@ -12,7 +12,7 @@ Table of Contents
    intro
    usage
    basics
-   ref
+   api/index
 
 .. toctree::
    :caption: Core Developer's Guide

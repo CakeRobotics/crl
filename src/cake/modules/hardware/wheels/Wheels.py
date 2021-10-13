@@ -6,6 +6,7 @@ class Wheels:
         self.robot = robot
         self.initialized = False
 
+
     def init(self, props):
         from .from_props import from_props
         if self.initialized:
@@ -15,12 +16,33 @@ class Wheels:
             self.robot.wheels = new_self
             self.initialized = True
 
+
     @runtime.run_in_event_loop
     async def set_speed(self, target_speed):
+        """
+        Sets robot linear speed to a desired value.
+
+        Parameters
+        ----------
+        target_speed
+            Desired linear speed in m/s.
+            Use negative numbers for backward motion.
+        """
         self._raise_undefined_or_unimplemented()
+
 
     @runtime.run_in_event_loop
     async def set_rotation_rate(self, target_rotation_rate):
+        """
+        Sets robot heading change rate to a desired value.
+
+        Parameters
+        ----------
+        target_rotation_rate
+            Desired angular velocity in rad/s.
+            Direction of rotation is interpreted by the right-hand rule around
+            upward z axis.
+        """
         self._raise_undefined_or_unimplemented()
 
 

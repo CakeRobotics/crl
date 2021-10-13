@@ -73,3 +73,15 @@ documentation. TODO: add hyperlink.
                 max-torque: 10 N.cm
                 max-steering: 20 deg
                 driver: dca-440
+
+Robot object
+================
+
+robot.wheels
+----------------
+
+This member controls the wheels. The member functions of this object are
+described below:
+
+.. autoclass:: cake.modules.hardware.wheels.Wheels.Wheels
+    :members:
