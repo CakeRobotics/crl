@@ -27,7 +27,7 @@ class Wheels(WheelsBase):
         specs = list(wheels_specs.items())[0][1]  # Specs of first wheels object
         if specs.get('dummy') == True:
             return WheelsDummy(self.robot)
-        if specs.get('sim') == True:
+        if props.get('sim') == True:
             return WheelsGazebo(self.robot, props)
 
 

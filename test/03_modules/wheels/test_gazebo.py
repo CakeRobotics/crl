@@ -8,10 +8,10 @@ from geometry_msgs.msg import Twist
 def test_init():
     props = {
         'name': 'name',
+        'sim': True,
         'hardware': {
             'wheels-1': {
                 'type': 'wheels',
-                'sim': True,
             }
         }
     }
@@ -24,10 +24,10 @@ def test_init():
 def test_set_speed():
     props = {
         'name': 'name',
+        'sim': True,
         'hardware': {
             'wheels-1': {
                 'type': 'wheels',
-                'sim': True,
             }
         }
     }
@@ -52,10 +52,10 @@ def test_set_speed():
 def test_set_rotation_rate():
     props = {
         'name': 'name',
+        'sim': True,
         'hardware': {
             'wheels-1': {
                 'type': 'wheels',
-                'sim': True,
             }
         }
     }
