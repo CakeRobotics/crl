@@ -1,40 +1,30 @@
-from cake.runtime.runtime import run_in_event_loop
-from cake.exceptions import UndefinedHardware
-from cake.utils.filter_by_type import filter_by_type
-from .WheelsBase import WheelsBase
-from .WheelsDummy import WheelsDummy
-from .WheelsGazebo import WheelsGazebo
+import cake.runtime.runtime as runtime
+from cake.exceptions import UndefinedHardware, Unimplemented
 
-class Wheels(WheelsBase):
+class Wheels:
     def __init__(self, robot):
         self.robot = robot
+        self.initialized = False
 
     def init(self, props):
-        self.robot.wheels = self._from_props(props)
+        from .from_props import from_props
+        if self.initialized:
+            raise Exception("Module already initialized.")
+        new_self = from_props(props, self.robot)
+        if new_self is not None:
+            self.robot.wheels = new_self
+            self.initialized = True
+
+    @runtime.run_in_event_loop
+    async def set_speed(self, target_speed):
+        self._raise_undefined_or_unimplemented()
+
+    @runtime.run_in_event_loop
+    async def set_rotation_rate(self, target_rotation_rate):
+        self._raise_undefined_or_unimplemented()
 
 
-    def _from_props(self, props):
-        hardware = props.get('hardware')
-        if hardware is None:
-            return self
-
-        wheels_specs = filter_by_type(hardware, 'wheels')
-        if len(wheels_specs) == 0:
-            return self
-        if len(wheels_specs) > 1:
-            raise Exception("Only 1 set of wheels is currently supported.")
-
-        specs = list(wheels_specs.items())[0][1]  # Specs of first wheels object
-        if specs.get('dummy') == True:
-            return WheelsDummy(self.robot)
-        if props.get('sim') == True:
-            return WheelsGazebo(self.robot, props)
-
-
-    @run_in_event_loop
-    async def set_speed(self, _target_speed):
-        raise UndefinedHardware
-
-    @run_in_event_loop
-    async def set_rotation_rate(self, _target_rotation_rate):
+    def _raise_undefined_or_unimplemented(self):
+        if self.initialized:
+            raise Unimplemented
         raise UndefinedHardware

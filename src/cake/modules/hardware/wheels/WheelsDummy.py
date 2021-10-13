@@ -1,7 +1,7 @@
 from cake.runtime.runtime import run_in_event_loop
-from .WheelsBase import WheelsBase
+from .Wheels import Wheels
 
-class WheelsDummy(WheelsBase):
+class WheelsDummy(Wheels):
     def __init__(self, robot):
         self.robot = robot
 

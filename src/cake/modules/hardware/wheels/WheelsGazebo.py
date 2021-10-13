@@ -1,9 +1,9 @@
 from cake.runtime.runtime import run_in_event_loop
 from geometry_msgs.msg import Twist, Vector3
 import rclpy.qos
-from .WheelsBase import WheelsBase
+from .Wheels import Wheels
 
-class WheelsGazebo(WheelsBase):
+class WheelsGazebo(Wheels):
     def __init__(self, robot, _props):
         self.robot = robot
         self._set_initial_values()
