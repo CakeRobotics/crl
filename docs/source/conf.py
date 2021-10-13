@@ -14,7 +14,12 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../../src'))
 add_module_names = False
-
+autodoc_mock_imports = [
+    'jinja2',
+    'geometry_msgs',
+    'rclpy',
+    'yaml',
+]
 
 # -- Project information -----------------------------------------------------
 
