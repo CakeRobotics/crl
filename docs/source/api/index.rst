@@ -39,6 +39,7 @@ Props file contains the following top level keys and values:
 - ``name``: Name of the project
 - ``author``: Author of the project *(optional)*
 - ``pip_requirements``: PyPI dependencies *(required if using bundler)*
+- ``sim``: Whether or not this is a simulation *(default: false)*
 - ``hardware``: Hardware of the robot. See the section below.
 
 Hardware Definitions
