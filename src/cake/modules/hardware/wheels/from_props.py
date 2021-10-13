@@ -3,6 +3,48 @@ from .WheelsDummy import WheelsDummy
 from .WheelsGazebo import WheelsGazebo
 
 def from_props(props, robot):
+    """
+    .. list-table:: Global props read by robot.wheels
+        :width: 90%
+        :widths: 15 15 15 50
+        :header-rows: 1
+
+        *
+            - Key
+            - Type
+            - Default
+            - Description
+        *
+            - sim
+            - boolean
+            - false
+            - If set to true, the simulation driver will be used.
+
+
+    .. list-table:: Hardware props read by robot.wheels
+        :width: 90%
+        :widths: 15 15 15 50
+        :header-rows: 1
+
+        *
+            - Key
+            - Type
+            - Default
+            - Description
+        *
+            - dummy
+            - boolean
+            - false
+            - If true, none of the function calls on this object will
+              do anything. Also, all sensor-related calls will
+              return fake data.
+        *
+            - steering
+            - 'ackermann' | 'diff'
+            - *required*
+            - The steering method of the wheels.
+    """
+
     hardware = props.get('hardware')
     if hardware is None:
         return None

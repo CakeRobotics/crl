@@ -1,0 +1,9 @@
+robot.wheels
+----------------
+
+This object controls the wheels.
+
+.. autofunction:: cake.modules.hardware.wheels.from_props.from_props
+
+.. autoclass:: cake.modules.hardware.wheels.Wheels.Wheels
+    :members:

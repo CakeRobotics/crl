@@ -87,11 +87,4 @@ documentation. TODO: add hyperlink.
 Robot object
 ================
 
-robot.wheels
-----------------
-
-This member controls the wheels. The member functions of this object are
-described below:
-
-.. autoclass:: cake.modules.hardware.wheels.Wheels.Wheels
-    :members:
+.. include:: wheels.rst.include
