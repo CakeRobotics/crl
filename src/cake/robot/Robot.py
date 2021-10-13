@@ -33,9 +33,7 @@ class Robot:
             self.props = load_props_from_file(project_dir)
 
     def init_from_props(self):
-        hw = self.props.get('hardware')
-        if hw is not None:
-            self.wheels.init({k: v for k, v in hw.items() if v['type'] == 'wheels'})
+        self.wheels.init(self.props)
 
     def health(self):
         return True
