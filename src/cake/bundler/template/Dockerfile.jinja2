@@ -21,4 +21,4 @@ RUN pip3 install git+https://github.com/CakeRobotics/crl
 RUN pip3 install {{ pip_requirements | join(' ') }}
 {% endif -%}
 COPY . /app
-CMD ["python3", "/app/main.py"]
+CMD ["python3", "-u", "/app/main.py"]
