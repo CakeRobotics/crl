@@ -12,7 +12,7 @@ RUN apt-get install -y python3-pip
 RUN pip3 install git+https://github.com/CakeRobotics/crl
 RUN pip3 install numpy scipy
 COPY . /app
-CMD ["python3", "/app/main.py"]"""
+CMD ["python3", "-u", "/app/main.py"]"""
     assert expected_lines in dockerfile_content
 
 
