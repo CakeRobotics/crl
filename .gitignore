@@ -149,3 +149,5 @@ cython_debug/
 docs/source/_build
 examples/*/crl
 examples/*/Dockerfile
+
+.vscode
