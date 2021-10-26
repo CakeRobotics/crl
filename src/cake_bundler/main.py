@@ -2,7 +2,7 @@ import argparse
 from os.path import dirname, join, realpath
 import shutil
 
-from cake.utils.load_props_from_file import load_props_from_file
+from .load_props_from_file import load_props_from_file
 from .get_dockerfile import get_dockerfile
 
 

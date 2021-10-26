@@ -1,3 +1,8 @@
+# NOTE: this file is symlinked (original file at src/cake/utils/ and relative link
+# at src/cake_bundler/) Reason: We don't want to import anything from `cake` into
+# `cake_bundler` inside python code. This way we can use bundler without having
+# to install all crl dependencies e.g. rclpy.
+
 import json, yaml
 from os.path import exists, isdir, join
 

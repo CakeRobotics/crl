@@ -1,10 +1,10 @@
-import cake.bundler.get_dockerfile
+import cake_bundler.get_dockerfile
 
 def test_get_dockerfile():
     props = {
         'pip_requirements': ['numpy', 'scipy']
     }
-    dockerfile_content = cake.bundler.get_dockerfile.get_dockerfile(props)
+    dockerfile_content = cake_bundler.get_dockerfile.get_dockerfile(props)
     expected_lines = \
 """FROM ros:galactic-ros-base-focal
 RUN apt-get update
@@ -17,7 +17,7 @@ CMD ["python3", "-u", "/app/main.py"]"""
 
 
 def test_get_dockerfile_with_local_crl():
-    dockerfile_content = cake.bundler.get_dockerfile.get_dockerfile({}, local_crl=True)
+    dockerfile_content = cake_bundler.get_dockerfile.get_dockerfile({}, local_crl=True)
     assert 'COPY crl /crl' in dockerfile_content
     assert 'WORKDIR /crl' in dockerfile_content
     assert 'pip3 install .' in dockerfile_content
