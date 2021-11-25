@@ -1,0 +1,5 @@
+name: simple-sway
+sim: true
+hardware:
+  wheels-1:
+    type: wheels
