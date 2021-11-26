@@ -38,7 +38,7 @@ def test_set_speed():
             global posted_target_speed
             posted_target_speed = msg.linear.x
         robot.runtime.ros_interface.create_subscription(
-            Twist, '/cake/wheels/cmd_vel', callback, 10
+            Twist, '/cmd_vel', callback, 10
         )
         await robot.wheels.set_speed(2)
         await asyncio.sleep(1e-3)
@@ -66,7 +66,7 @@ def test_set_rotation_rate():
             global posted_target_speed
             posted_target_speed = msg.angular.z
         robot.runtime.ros_interface.create_subscription(
-            Twist, '/cake/wheels/cmd_vel', callback, 10
+            Twist, '/cmd_vel', callback, 10
         )
         await robot.wheels.set_rotation_rate(3)
         await asyncio.sleep(1e-3)
