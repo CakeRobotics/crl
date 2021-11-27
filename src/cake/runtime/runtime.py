@@ -8,17 +8,26 @@ from cake.ros.interface import RosInterface
 class Runtime:
     def __init__(self):
         self.ros_interface_initialized = False
+        self._shutting_down = False
         self.__loop__ = asyncio.new_event_loop()
-        self.__loop_thread__ = threading.Thread(target=self.start_event_loop, daemon=True)
+        self.__loop_thread__ = threading.Thread(
+            name='backend_thread',
+            target=self.start_event_loop,
+            daemon=True,
+        )
         self.__loop_thread__.start()
         while not self.ros_interface_initialized:
             time.sleep(0.001)
 
     def start_event_loop(self):
         self.ros_interface = RosInterface(self)
+        self.ros_interface.start_launcher_process()
         self.ros_interface_initialized = True
-        self._ros_interface_task = self.__loop__.create_task(self.ros_interface.spin_coro()) # This is only one of many tasks in the loop. This task ticks the ROS node.
+        self._ros_interface_task = self.__loop__.create_task(self.ros_interface.spin_internal_coro()) # This is only one of many tasks in the loop. This task controls main ROS node.
         self.__loop__.run_forever()
+        if not self._shutting_down:
+            raise self._ros_interface_task.exception()
+            # os.kill(os.getpid(), signal.SIGINT)
 
     def assert_ros_interface_ok(self):
         task = self._ros_interface_task
@@ -26,8 +35,28 @@ class Runtime:
             raise task.exception()  # type: ignore
 
     def shutdown(self):
-        self.ros_interface.shutdown()
-        # self.__loop__.call_soon_threadsafe(self.__loop__.stop)
+        # Enable _shutting_down flag so that backend_loop being stopped
+        # won't be interprated as an error
+        self._shutting_down = True
+
+        # Shutdown rclpy which in turn makes rclpy.ok() = false, causing
+        # the task in backend_loop to finish.
+        self.__loop__.call_soon_threadsafe(self.ros_interface.shutdown)
+        while not self._ros_interface_task.done():
+            time.sleep(0.1)
+
+        # Stop the backend loop which should be empty by now.
+        # Checking __loop__.is_running is not really needed as it's already covered in the next line
+        self.__loop__.call_soon_threadsafe(self.__loop__.stop)
+        while self.__loop__.is_running():
+            time.sleep(0.1)
+
+        # backend_thread will automatically stop as soon as the loop finishes.
+        self.__loop_thread__.join()
+
+        # Stop external nodes process
+        self.ros_interface.stop_launcher_process()
+        self.ros_interface._launcher_process.join()
 
     def start_task(self, coro):
         return asyncio.run_coroutine_threadsafe(coro, self.__loop__)
