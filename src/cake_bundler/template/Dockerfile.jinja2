@@ -14,6 +14,9 @@ RUN apt-get install -y \
     ros-galactic-navigation2 \
     ros-galactic-nav2-bringup \
     ros-galactic-slam-toolbox
+# Nasty backport (delete after upgrading to python 3.9)
+RUN curl https://raw.githubusercontent.com/python/cpython/3.9/Lib/asyncio/events.py \
+    --output /usr/lib/python3.8/asyncio/events.py
 {% if local_crl -%}
 COPY crl /crl
 WORKDIR /crl
