@@ -1,8 +1,15 @@
+import sys
 from threading import Thread
-from time import sleep
+
 from launch import LaunchService
 
+
+def mute():
+    sys.stdout = open('/tmp/cake_external_log', 'w')
+
+
 def launcher_process_main(launch_description_queue):
+    mute()
     launch_service = LaunchService()
     def queue_listener():
         while True:
