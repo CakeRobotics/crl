@@ -1,0 +1,9 @@
+name: simple-sway
+sim: true
+hardware:
+  wheels-1:
+    type: wheels
+  imu-1:
+    type: imu
+  lidar-1:
+    type: lidar

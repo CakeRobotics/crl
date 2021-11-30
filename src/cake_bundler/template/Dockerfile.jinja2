@@ -9,7 +9,11 @@
 
 FROM ros:galactic-ros-base-focal
 RUN apt-get update
-RUN apt-get install -y python3-pip
+RUN apt-get install -y \
+    python3-pip \
+    ros-galactic-navigation2 \
+    ros-galactic-nav2-bringup \
+    ros-galactic-slam-toolbox
 {% if local_crl -%}
 COPY crl /crl
 WORKDIR /crl

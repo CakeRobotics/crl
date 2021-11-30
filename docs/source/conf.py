@@ -18,6 +18,7 @@ autodoc_mock_imports = [
     'jinja2',
     'geometry_msgs',
     'rclpy',
+    'transforms3d',
     'yaml',
 ]
 

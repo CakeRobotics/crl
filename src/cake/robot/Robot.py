@@ -1,4 +1,5 @@
 from cake.modules.hardware.wheels.Wheels import Wheels
+from cake.modules.navigation.Navigation import Navigation
 from cake.runtime.runtime import Runtime
 from cake.utils.load_props_from_file import load_props_from_file
 from cake.utils.try_detect_project_dir import try_detect_project_dir
@@ -19,6 +20,7 @@ class Robot:
 
     def init_stub(self):
         self.wheels = Wheels(self)
+        self.navigation = Navigation(self)
 
     def load_props(self, explicitly_provided_props):
         if explicitly_provided_props is not None:
@@ -34,6 +36,7 @@ class Robot:
 
     def init_from_props(self):
         self.wheels.init(self.props)
+        self.navigation.init(self.props)
 
     def health(self):
         return True
