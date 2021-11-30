@@ -1,5 +1,6 @@
 import asyncio
 from multiprocessing import Process, Queue
+import signal
 import traceback
 
 import rclpy
@@ -55,7 +56,9 @@ class RosInterface:
         self._launcher_process.start()
 
     def stop_launcher_process(self):
-        self._launcher_process.kill()
+        # SEND SIGINT
+        self._launcher_process._check_closed()
+        self._launcher_process._popen._send_signal(signal.SIGINT)
 
     def create_publisher(self, *args, thread_check=True):
         if thread_check and not self.runtime.am_i_running_in_event_loop_thread():
