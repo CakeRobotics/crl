@@ -17,6 +17,12 @@ RUN apt-get install -y \
 # Nasty backport (delete after upgrading to python 3.9)
 RUN curl https://raw.githubusercontent.com/python/cpython/3.9/Lib/asyncio/events.py \
     --output /usr/lib/python3.8/asyncio/events.py
+{% if debug -%}
+RUN pip3 install tornado simplejpeg psutil && \
+    git clone https://github.com/dheera/rosboard /rosboard
+WORKDIR /rosboard
+ENV ROSBOARD_PATH=/rosboard
+{% endif -%}
 {% if local_crl -%}
 COPY crl /crl
 WORKDIR /crl
