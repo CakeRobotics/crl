@@ -55,6 +55,6 @@ def copy_crl_to_project_dir(project_dir):
 def get_local_crl_dir():
     this_file_dir = realpath(__file__)
     cursor = this_file_dir
-    for _ in range(4):
+    for _ in range(3):
         cursor = dirname(cursor)
     return cursor
