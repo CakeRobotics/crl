@@ -1,0 +1,9 @@
+robot.navigation
+----------------
+
+This object can be used to map the environment and move to a target position.
+
+.. autofunction:: cake.modules.navigation.from_props.from_props
+
+.. autoclass:: cake.modules.navigation.Navigation.Navigation
+    :members:

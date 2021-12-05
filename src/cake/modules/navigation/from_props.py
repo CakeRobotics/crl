@@ -2,6 +2,16 @@ from cake.utils.filter_by_type import filter_by_type
 from .NavigationSlam import NavigationSlam
 
 def from_props(props, robot):
+    """
+    This object becomes available automaically if all the following conditions are met:
+
+    * At least one hardware with type=wheels is defined in the props file.
+    * At least one hardware with type=imu is defined in the props file.
+    * At least one hardware with type=lidar is defined in the props file.
+
+    Supporting more hardware systems is on our todo list.
+    """
+
     hardware = props.get('hardware')
     if hardware is None:
         return None

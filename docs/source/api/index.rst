@@ -87,4 +87,5 @@ documentation. TODO: add hyperlink.
 Robot object
 ================
 
+.. include:: navigation.rst.include
 .. include:: wheels.rst.include
