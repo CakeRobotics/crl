@@ -1,7 +1,8 @@
 robot.wheels
 ----------------
 
-This object controls the wheels.
+This object controls the wheels in a low-level manner.
+See :ref:`robot.navigation <navigation>` for a high-level alternative.
 
 .. autofunction:: cake.modules.hardware.wheels.from_props.from_props
 
