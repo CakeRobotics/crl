@@ -1,14 +1,12 @@
 import asyncio
 import functools
-import signal
 import threading
 import time
 
 from cake.ros.interface import RosInterface
 
 class Runtime:
-    def __init__(self, debug=True):
-        self._debug = debug
+    def __init__(self):
         self.ros_interface_initialized = False
         self._shutting_down = False
         self.__loop__ = asyncio.new_event_loop()
@@ -24,8 +22,6 @@ class Runtime:
     def start_event_loop(self):
         self.ros_interface = RosInterface(self)
         self.ros_interface.start_launcher_process()
-        if self._debug:
-            self.ros_interface.start_web_debugger()
         self.ros_interface_initialized = True
         self._ros_interface_task = self.__loop__.create_task(self.ros_interface.spin_internal_coro()) # This is only one of many tasks in the loop. This task controls main ROS node.
         self.__loop__.run_forever()
@@ -61,11 +57,6 @@ class Runtime:
         # Stop external nodes process
         self.ros_interface.stop_launcher_process()
         self.ros_interface._launcher_process.join()
-
-        # Stop rosboard
-        self.ros_interface._rosboard.send_signal(signal.SIGINT)
-        self.ros_interface._rosboard.wait()
-
 
     def start_task(self, coro):
         return asyncio.run_coroutine_threadsafe(coro, self.__loop__)

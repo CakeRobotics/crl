@@ -16,7 +16,6 @@ def _get_template_args(props):
     return {
         'pip_requirements': props.get('pip_requirements'),
         'date_string': str(datetime.now()),
-        'debug': props.get('debug') or True,
     }
 
 

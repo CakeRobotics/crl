@@ -7,10 +7,9 @@ from cake.utils.try_detect_project_dir import try_detect_project_dir
 class Robot:
     def __init__(self, props=None):
         self.init_stub()
-        self.load_props(props)
-        debug = self.props.get('debug') or True
-        self.runtime = Runtime(debug=debug)
+        self.runtime = Runtime()
         try:
+            self.load_props(props)
             self.init_from_props()
         except Exception as exception:
             self.runtime.shutdown()

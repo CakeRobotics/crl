@@ -1,8 +1,6 @@
 import asyncio
 from multiprocessing import Process, Queue
-import os
 import signal
-import subprocess
 import traceback
 
 import rclpy
@@ -56,17 +54,6 @@ class RosInterface:
             daemon=True,
         )
         self._launcher_process.start()
-
-    def start_web_debugger(self):
-        rosboard_path = os.environ.get('ROSBOARD_PATH')
-        if not rosboard_path:
-            print("WARNING: ROSBOARD_PATH is undefined. Set props.debug=False to hide this message.")
-            return
-        self._rosboard = subprocess.Popen(
-            ['python3', f'{rosboard_path}/run'],
-            stdout=open('/tmp/cake_rosboard', 'w'),
-            stderr=subprocess.STDOUT
-        )
 
     def stop_launcher_process(self):
         # SEND SIGINT
