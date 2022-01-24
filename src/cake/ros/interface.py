@@ -35,6 +35,7 @@ class RosInterface:
 
     def shutdown(self):
         rclpy.shutdown()
+        self.__node__.destroy_node()
 
     async def spin_internal_coro(self):
         try:
