@@ -15,9 +15,13 @@ import sys
 sys.path.insert(0, os.path.abspath('../../src'))
 add_module_names = False
 autodoc_mock_imports = [
+    'ament_index_python',
+    'builtin_interfaces',
     'jinja2',
     'geometry_msgs',
+    'launch',
     'rclpy',
+    'std_msgs',
     'transforms3d',
     'yaml',
 ]
