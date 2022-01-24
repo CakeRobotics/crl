@@ -1,6 +1,7 @@
 import asyncio
 from multiprocessing import Process, Queue
 import signal
+from time import sleep
 import traceback
 
 import rclpy
@@ -57,6 +58,8 @@ class RosInterface:
         self._launcher_process.start()
 
     def stop_launcher_process(self):
+        # Stabilize
+        sleep(0.5)
         # SEND SIGINT
         self._launcher_process._check_closed()
         self._launcher_process._popen._send_signal(signal.SIGINT)
