@@ -2,8 +2,11 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "python.pythonPath": "venv/bin/python",
-    "python.analysis.extraPaths": ["/opt/ros2/foxy/lib/python3.9/site-packages"],
+    "python.defaultInterpreterPath": "venv/bin/python",
+    "python.analysis.extraPaths": [
+        "/opt/ros/galactic/lib/python3.8/site-packages",
+        "${workspaceFolder}/src"
+    ],
     "python.terminal.activateEnvInCurrentTerminal": true,
     "files.exclude": {
         "**/__pycache__": true,
