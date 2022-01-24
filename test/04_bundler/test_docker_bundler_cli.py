@@ -10,7 +10,7 @@ def test_docker_bundler_cli():
     if os.path.exists(expected_dockerfile_path):
         os.remove(expected_dockerfile_path)
 
-    response_binary = check_output(['python', '-m', 'cake_bundler', sample_project_dir])
+    response_binary = check_output(['python3', '-m', 'cake_bundler', sample_project_dir])
     response = response_binary.decode('utf-8')
     assert "Dockerfile generated." in response
     assert os.path.exists(expected_dockerfile_path)
