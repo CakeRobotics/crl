@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 apt-get update
-apt-get install -y python3-pip
+apt-get install -y \
+    python3-pip \
+    curl
 source /opt/ros/galactic/setup.bash
 # Nasty backport (delete after upgrading to python 3.9)
 curl https://raw.githubusercontent.com/python/cpython/3.9/Lib/asyncio/events.py \
