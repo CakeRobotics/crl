@@ -11,4 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run tests
-        run: pip3 install . && python3 -m pytest
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ros:galactic-ros-base-focal
+          options: -v ${{ github.workspace }}:/crl
+          run: |
+            cd /crl
+            pip3 install .
+            python3 -m pytest
