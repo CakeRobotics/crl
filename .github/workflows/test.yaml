@@ -17,5 +17,4 @@ jobs:
           options: -v ${{ github.workspace }}:/crl
           run: |
             cd /crl
-            pip3 install .
-            python3 -m pytest
+            bash .github/workflows/test.bash
