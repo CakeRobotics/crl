@@ -2,27 +2,21 @@
 Introduction
 =============
 
-Welcome. You are reading the documentation of Cake Robot Library.
-
-Let's get started!
-
 What is Cake Robot Library?
 ===========================
 
 Cake Robot Library (CRL) is a Python package that provides
 an easy and efficient framework for robot programming.
-It is also the core of `Cake Robotics <https://cakerobotics.com>`_ project.
+It is also the core of `Cake Robotics <https://cakerobotics.com>`_ cloud platform.
 
-Under the hood, CRL integrates
-ROS functionalities with Cake cloud services. From the outside, it is
+CRL wraps ROS functionalities and integrates them with opt-in Cake cloud services. From the outside, CRL is
 just a set of declarative classes and functions that can be used to create
 maintainable robot programs.
 
 An Example
 ==========
 
-A simple example could illuminate how CRL helps you write robot code.
-
+This simple example can illustrate how CRL helps you write robot code.
 Can you guess what happens if we could run this code in a robot?
 
 .. code-block:: Python
@@ -30,15 +24,13 @@ Can you guess what happens if we could run this code in a robot?
     import cake
     import time
 
-    class MyRobot:
-        def init(self):
-            pass
-
-        def loop(self):
-            cake.wheels.set_speed(2)
-            time.sleep(5)
-            cake.wheels.set_speed(-2)
-            time.sleep(5)
+    robot = cake.Robot()
+    
+    while True:
+        robot.wheels.set_speed(2)
+        time.sleep(5)
+        robot.wheels.set_speed(-2)
+        time.sleep(5)
 
 You're right. The robot will simply move back and forth indefinitely.
 

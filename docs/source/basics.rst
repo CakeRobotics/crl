@@ -2,10 +2,6 @@
 Basics
 ======
 
-In this page we'll to cover the basics of programming robots with Cake Robots Library.
-It's going to be fun!
-No special prior knowledge required.
-
 Project Structure
 ======================
 
@@ -25,15 +21,13 @@ This file logically describes the tasks that the robot must do, and doesn't deal
         import cake
         import time
 
-        class MyRobot:
-            def init(self):
-                pass
+        robot = cake.Robot()
 
-            def loop(self):
-                cake.wheels.set_speed(2)
-                time.sleep(5)
-                cake.wheels.set_speed(-2)
-                time.sleep(5)
+        while True:
+            robot.wheels.set_speed(2)
+            time.sleep(5)
+            robot.wheels.set_speed(-2)
+            time.sleep(5)
 
 2. ``props.yaml``
 --------------------
