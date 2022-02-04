@@ -1,4 +1,3 @@
-import asyncio
 from datetime import datetime
 from random import random
 
@@ -10,6 +9,7 @@ from transforms3d.euler import euler2quat
 
 from cake.exceptions import Unimplemented
 from cake.runtime.runtime import run_in_event_loop
+from cake.utils.clamped_sleep import clamped_sleep
 from .external_nodes import generate_launch_description
 from .Navigation import Navigation
 
@@ -53,10 +53,12 @@ class NavigationSlam(Navigation):
         while datetime.now().timestamp() < t_end:
             await self.robot.wheels.set_speed(0.2)
             await self.robot.wheels.set_rotation_rate(2 * (random() - 0.5))
-            await asyncio.sleep(3)
+            await clamped_sleep(3, t_end)
             await self.robot.wheels.set_speed(0.2)
             await self.robot.wheels.set_rotation_rate(0)
-            await asyncio.sleep(4)
+            await clamped_sleep(4, t_end)
+        await self.robot.wheels.set_speed(0.0)
+        await self.robot.wheels.set_rotation_rate(0)
 
     def _publish_goal_command(self):
         Px, Py, Pz = self._target_position
