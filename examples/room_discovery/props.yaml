@@ -1,5 +1,8 @@
 name: simple-sway
+
 sim: true
+sim_robot: diff_drive_lidar
+
 hardware:
   wheels-1:
     type: wheels

@@ -1,5 +1,8 @@
 name: simple-sway
+
 sim: true
+sim_robot: diff_drive
+
 hardware:
   wheels-1:
     type: wheels
