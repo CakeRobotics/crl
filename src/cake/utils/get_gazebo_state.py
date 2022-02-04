@@ -20,8 +20,9 @@ async def get_gazebo_state(cake_node):
         global cake_clock_msg_count
         cake_clock_msg_count += 1
 
-    cake_node.create_subscription(Clock, '/clock', increment, rclpy.qos.HistoryPolicy.KEEP_LAST)
+    subscription = cake_node.create_subscription(Clock, '/clock', increment, rclpy.qos.HistoryPolicy.KEEP_LAST)
     await asyncio.sleep(TIME_TO_SLEEP)
+    cake_node.destroy_subscription(subscription)
 
     if cake_clock_msg_count < MIN_NUMBER_OF_CLOCK_MESSAGES:
         return 'PAUSED'
