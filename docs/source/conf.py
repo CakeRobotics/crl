@@ -21,6 +21,7 @@ autodoc_mock_imports = [
     'geometry_msgs',
     'launch',
     'rclpy',
+    'rosgraph_msgs',
     'std_msgs',
     'transforms3d',
     'yaml',

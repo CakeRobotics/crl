@@ -1,6 +1,7 @@
 from cake.modules.hardware.wheels.Wheels import Wheels
 from cake.modules.navigation.Navigation import Navigation
 from cake.runtime.runtime import Runtime
+from cake.utils.block_until_gazebo_runs import block_until_gazebo_runs
 from cake.utils.load_props_from_file import load_props_from_file
 from cake.utils.try_detect_project_dir import try_detect_project_dir
 
@@ -14,6 +15,8 @@ class Robot:
         except Exception as exception:
             self.runtime.shutdown()
             raise exception
+        if self.props.get('sim') == True:
+            block_until_gazebo_runs(self.runtime)
 
     def shutdown(self):
         self.runtime.shutdown()
