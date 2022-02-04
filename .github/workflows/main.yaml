@@ -1,0 +1,46 @@
+name: CI + CD
+
+on:
+  push:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/dev/Dockerfile
+          push: false
+          tags: crl-dev:local-test
+
+      - name: Run Tests
+        uses: addnab/docker-run-action@v3
+        with:
+          image: crl-dev:local-test
+          shell: bash
+          run: |
+            cd /crl/test
+            source /ros_entrypoint.sh
+            python3 -m pytest -x -s -v
+
+      - name: Login to DockerHub
+        if: success() && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v1
+        with:
+          username: cakerobotics
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push to DockerHub
+        if: success() && github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/dev/Dockerfile
+          push: true
+          tags: cakerobotics/crl-dev:latest
