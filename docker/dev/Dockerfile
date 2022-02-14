@@ -30,12 +30,11 @@ RUN pip3 install \
 RUN curl https://raw.githubusercontent.com/python/cpython/3.9/Lib/asyncio/events.py \
     --output /usr/lib/python3.8/asyncio/events.py
 
-RUN curl https://raw.githubusercontent.com/m2-farzan/px/main/px --output /px && \
-    chmod +x /px
-
 COPY . /crl
 WORKDIR /crl
 RUN pip3 install .
 
+RUN pip3 install -r /crl/docker/dev/controller-requirements.txt
+
 WORKDIR /app
-CMD ["bash", "/crl/docker/dev/main.bash"]
+CMD ["python3", "-u", "/crl/docker/dev/controller.py"]
