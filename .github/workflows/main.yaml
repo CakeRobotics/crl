@@ -11,23 +11,37 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 40
+    services:
+      registry:
+        image: registry:2
+        ports:
+          - 5000:5000
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver-opts: network=host
 
       - name: Build Image
         uses: docker/build-push-action@v2
         with:
           context: .
           file: docker/dev/Dockerfile
-          push: false
-          tags: crl-dev:local-test
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: localhost:5000/crl-dev:local-test
 
       - name: Run Tests
         uses: addnab/docker-run-action@v3
         with:
-          image: crl-dev:local-test
+          image: localhost:5000/crl-dev:local-test
           shell: bash
           run: |
             cd /crl/test
@@ -47,5 +61,6 @@ jobs:
         with:
           context: .
           file: docker/dev/Dockerfile
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: cakerobotics/crl-dev:latest
