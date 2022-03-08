@@ -14,14 +14,20 @@
 #
 
 FROM ros:galactic-ros-base-focal
+
 RUN apt-get update
 RUN apt-get install -y \
     curl \
     python3-pip \
     ros-galactic-navigation2 \
     ros-galactic-nav2-bringup \
-    ros-galactic-ros1-bridge \
     ros-galactic-slam-toolbox
+
+# Install ROS 1
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
+    bash -c 'curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -' && \
+    apt-get update && \
+    apt-get install -y ros-galactic-ros1-bridge
 
 RUN pip3 install \
     numpy \
