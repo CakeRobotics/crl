@@ -8,6 +8,8 @@ import requests
 import socketio
 import yaml
 
+from utils.source_script import source
+
 
 srcdir = '/app'
 app_process = None
@@ -19,6 +21,7 @@ def main():
     ensure_workspace_dir()
     ensure_source()
     ensure_requirements()
+    source_ros()
     connect_to_devices_service()
     start_app()
     handle_logs()
@@ -70,17 +73,28 @@ def ensure_requirements():
         pip.main(['install', *requirements])
 
 
-def read_requirements_from_props():
+def read_props():
     json_file_path = f'{srcdir}/props.json'
     yaml_file_path = f'{srcdir}/props.yaml'
     if os.path.isfile(json_file_path):
         with open(json_file_path) as f:
-            props = json.load(f)
+            return json.load(f)
     elif os.path.isfile(yaml_file_path):
         with open(yaml_file_path) as f:
-            props = yaml.safe_load(f)
-    else:
-        props = {}
+            return yaml.safe_load(f)
+    return {}
+
+
+def source_ros():
+    logging.info("Sourcing ROS")
+    props = read_props()
+    if props.get('ros1_port'):
+        source('/opt/ros/noetic/setup.bash')
+    source('/opt/ros/galactic/setup.bash')
+
+
+def read_requirements_from_props():
+    props = read_props()
     return props.get('pip_requirements') or []
 
 

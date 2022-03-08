@@ -38,4 +38,4 @@ RUN pip3 install .
 RUN pip3 install -r /crl/docker/dev/controller-requirements.txt
 
 WORKDIR /app
-CMD ["python3", "-u", "/crl/docker/dev/controller.py"]
+ENTRYPOINT ["python3", "-u", "/crl/docker/dev/controller.py"]
