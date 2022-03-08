@@ -1,6 +1,7 @@
 from cake.utils.filter_by_type import filter_by_type
 from .WheelsDummy import WheelsDummy
 from .WheelsGazebo import WheelsGazebo
+from .WheelsROS1 import WheelsROS1
 
 def from_props(props, robot):
     """
@@ -32,12 +33,10 @@ def from_props(props, robot):
             - Default
             - Description
         *
-            - dummy
-            - boolean
-            - false
-            - If true, none of the function calls on this object will
-              do anything. Also, all sensor-related calls will
-              return fake data.
+            - driver
+            - 'ros1' | 'dummy' | None
+            - None
+            - Driver to use for the wheels. Required if sim != True.
         *
             - steering
             - 'ackermann' | 'diff'
@@ -56,7 +55,11 @@ def from_props(props, robot):
         raise Exception("Only 1 set of wheels is currently supported.")
 
     specs = list(wheels_specs.items())[0][1]  # Specs of first wheels object
-    if specs.get('dummy') == True:
-        return WheelsDummy(robot)
-    elif props.get('sim') == True:
+    if props.get('sim') == True:
         return WheelsGazebo(robot, props)
+    elif specs.get('driver') == 'dummy':
+        return WheelsDummy(robot)
+    elif specs.get('driver') == 'ros1':
+        if props.get('ros1_port') is None:
+            raise Exception("Wheels driver set to 'ros1' requires global prop 'ros1_port' to be set.")
+        return WheelsROS1(robot, props)

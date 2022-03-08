@@ -1,0 +1,10 @@
+name: simple-sway
+
+sim: false
+sim_robot: diff_drive
+ros1_port: 11311
+
+hardware:
+  wheels-1:
+    type: wheels
+    driver: ros1

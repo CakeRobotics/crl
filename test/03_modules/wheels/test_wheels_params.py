@@ -42,7 +42,7 @@ def test_initialized():
         'hardware': {
             'wheels-1': {
                 'type': 'wheels',
-                'dummy': True,
+                'driver': 'dummy',
             }
         }
     }
