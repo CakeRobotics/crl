@@ -4,6 +4,7 @@ from cake.runtime.runtime import Runtime
 from cake.utils.block_until_gazebo_runs import block_until_gazebo_runs
 from cake.utils.load_props_from_file import load_props_from_file
 from cake.utils.try_detect_project_dir import try_detect_project_dir
+import cake.ros.ros1_bridge_external_nodes as ros1_bridge_external_nodes
 
 class Robot:
     def __init__(self, props=None):
@@ -15,6 +16,8 @@ class Robot:
         except Exception as exception:
             self.runtime.shutdown()
             raise exception
+        if self.props.get('sim') != True and self.props.get('ros1_port'):
+            self.start_ros1_bridge()
         if self.props.get('sim') == True:
             block_until_gazebo_runs(self.runtime)
 
@@ -40,6 +43,13 @@ class Robot:
     def init_from_props(self):
         self.wheels.init(self.props)
         self.navigation.init(self.props)
+
+    def start_ros1_bridge(self):
+        @self.runtime.run_in_event_loop
+        async def body():
+            ros1_bridge_launch_description = ros1_bridge_external_nodes.generate_launch_description(self.props)
+            self.runtime.ros_interface.launch_external_nodes(ros1_bridge_launch_description)
+        body()
 
     def health(self):
         return True

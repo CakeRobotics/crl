@@ -41,6 +41,7 @@ Props file contains the following top level keys and values:
 - ``pip_requirements``: PyPI dependencies *(required if using bundler)*
 - ``sim``: Whether or not this is a simulation *(default: false)*
 - ``hardware``: Hardware of the robot. See the section below.
+- ``ros1_port``: ROS 1 master port *(required if robot uses ROS 1 driver)*
 
 Hardware Definitions
 _____________________
