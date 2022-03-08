@@ -2,6 +2,7 @@ from cake.utils.filter_by_type import filter_by_type
 from .WheelsDummy import WheelsDummy
 from .WheelsGazebo import WheelsGazebo
 from .WheelsROS1 import WheelsROS1
+from .WheelsROS2 import WheelsROS2
 
 def from_props(props, robot):
     """
@@ -34,7 +35,7 @@ def from_props(props, robot):
             - Description
         *
             - driver
-            - 'ros1' | 'dummy' | None
+            - 'ros2' | 'ros1' | 'dummy' | None
             - None
             - Driver to use for the wheels. Required if sim != True.
         *
@@ -59,6 +60,8 @@ def from_props(props, robot):
         return WheelsGazebo(robot, props)
     elif specs.get('driver') == 'dummy':
         return WheelsDummy(robot)
+    elif specs.get('driver') == 'ros2':
+        return WheelsROS2(robot, props)
     elif specs.get('driver') == 'ros1':
         if props.get('ros1_port') is None:
             raise Exception("Wheels driver set to 'ros1' requires global prop 'ros1_port' to be set.")
