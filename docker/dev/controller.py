@@ -139,8 +139,7 @@ def print_exit_code():
 
 
 def stop_app():
-    # app_process.send_signal(9)
-    app_process.kill()
+    app_process.send_signal(2)
     app_process.wait()
 
 

@@ -1,5 +1,7 @@
 import asyncio
 import functools
+import signal
+import sys
 import threading
 import time
 
@@ -18,6 +20,14 @@ class Runtime:
         self.__loop_thread__.start()
         while not self.ros_interface_initialized:
             time.sleep(0.001)
+        self.register_signals()
+
+    def register_signals(self):
+        def handler(*args):
+            self.shutdown()
+            sys.exit(0)
+        signal.signal(signal.SIGINT, handler)
+        signal.signal(signal.SIGTERM, handler)
 
     def start_event_loop(self):
         self.ros_interface = RosInterface(self)
