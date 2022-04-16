@@ -60,6 +60,50 @@ class Navigation:
         self._raise_undefined_or_unimplemented()
 
 
+    @runtime.run_in_event_loop
+    async def is_task_complete(self):
+        """
+        Returns whether or not the last task is finished.
+        """
+        self._raise_undefined_or_unimplemented()
+
+
+    @runtime.run_in_event_loop
+    async def cancel_task(self):
+        """
+        Cancels the pending task.
+        """
+        self._raise_undefined_or_unimplemented()
+
+
+    @runtime.run_in_event_loop
+    async def stop(self):
+        """
+        Cancels the pending task and stops immediately.
+        """
+        self._raise_undefined_or_unimplemented()
+
+
+    @runtime.run_in_event_loop
+    async def get_position(self):
+        """
+        Returns robot position as a tuple of (x, y, z) in meters from the origin.
+
+        In SLAM mode with no existing map, the starting point is the origin.
+        """
+        self._raise_undefined_or_unimplemented()
+
+
+    @runtime.run_in_event_loop
+    async def get_heading(self):
+        """
+        Returns robot heading in radians from -pi to pi.
+
+        In SLAM mode with no existing map, the starting heading is zero.
+        """
+        self._raise_undefined_or_unimplemented()
+
+
     def _raise_undefined_or_unimplemented(self):
         if self.initialized:
             raise Unimplemented
