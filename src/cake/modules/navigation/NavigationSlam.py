@@ -1,6 +1,3 @@
-from datetime import datetime
-from random import random
-
 import rclpy.qos
 from builtin_interfaces.msg import Time
 from geometry_msgs.msg import Point, Pose, PoseStamped, Quaternion
@@ -9,9 +6,9 @@ from transforms3d.euler import euler2quat
 
 from cake.exceptions import Unimplemented
 from cake.runtime.runtime import run_in_event_loop
-from cake.utils.clamped_sleep import clamped_sleep
 from .external_nodes import generate_launch_description
 from .Navigation import Navigation
+from .explore.random_walk import random_walk
 
 
 class NavigationSlam(Navigation):
@@ -47,18 +44,10 @@ class NavigationSlam(Navigation):
 
     @run_in_event_loop
     async def explore(self, method='random_walk', timeout=None):
-        if method != 'random_walk':
+        if method == 'random_walk':
+            await random_walk(self.robot, timeout=timeout)
+        else:
             raise Unimplemented()
-        t_end = datetime.now().timestamp() + timeout
-        while datetime.now().timestamp() < t_end:
-            await self.robot.wheels.set_speed(0.2)
-            await self.robot.wheels.set_rotation_rate(2 * (random() - 0.5))
-            await clamped_sleep(3, t_end)
-            await self.robot.wheels.set_speed(0.2)
-            await self.robot.wheels.set_rotation_rate(0)
-            await clamped_sleep(4, t_end)
-        await self.robot.wheels.set_speed(0.0)
-        await self.robot.wheels.set_rotation_rate(0)
 
     def _publish_goal_command(self):
         Px, Py, Pz = self._target_position
