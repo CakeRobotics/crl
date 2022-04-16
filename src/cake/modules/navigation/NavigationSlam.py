@@ -1,3 +1,5 @@
+import asyncio
+
 from builtin_interfaces.msg import Time
 from geometry_msgs.msg import Point, Pose, PoseStamped, Quaternion
 from std_msgs.msg import Header
@@ -23,7 +25,7 @@ class NavigationSlam(Navigation):
         self.robot.runtime.ros_interface.launch_external_nodes(launch_description)
 
     @run_in_event_loop
-    async def move_to(self, target_x, target_y, target_heading=None):
+    async def move_to(self, target_x, target_y, target_heading=None, waitToFinish=True):
         Qw, Qx, Qy, Qz = euler2quat(0.0, 0.0, float(target_heading or 0.0), 'sxyz')
         pose_stamped = PoseStamped(
             header=Header(
@@ -36,6 +38,11 @@ class NavigationSlam(Navigation):
             )
         )
         self.navigator.goToPose(pose_stamped)
+        # Block
+        if not waitToFinish:
+            return
+        while not self.navigator.isNavComplete(): # Will change to isTaskComplete
+            await asyncio.sleep(0.1)
 
     @run_in_event_loop
     async def explore(self, method='random_walk', timeout=None):
