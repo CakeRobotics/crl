@@ -21,6 +21,7 @@ RUN apt-get install -y \
     python3-pip \
     ros-galactic-navigation2 \
     ros-galactic-nav2-bringup \
+    ros-galactic-nav2-simple-commander \
     ros-galactic-slam-toolbox
 
 # Install ROS 1

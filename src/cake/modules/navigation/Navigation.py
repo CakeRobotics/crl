@@ -34,7 +34,7 @@ class Navigation:
 
 
     @runtime.run_in_event_loop
-    async def move_to(self, target_x, target_y, target_heading=None):
+    async def move_to(self, target_x, target_y, target_heading=None, wait_to_finish=True):
         """
         Moves the robot to the target position.
 
@@ -52,6 +52,10 @@ class Navigation:
 
         target_heading
             Target heading in radians. Optional.
+
+        wait_to_finish
+            Defaults to False. If set to True, the method will block the execution of the
+            next lines of code until the movement is completed.
         """
         self._raise_undefined_or_unimplemented()
 
