@@ -21,11 +21,15 @@ class WheelsBase(Wheels):
 
     @run_in_event_loop
     async def set_speed(self, _target_speed):
+        if self.robot.navigation.initialized:
+            await self.robot.navigation.cancel_task()
         self._target_speed = _target_speed
         self._publish_velocity_command()
 
     @run_in_event_loop
     async def set_rotation_rate(self, _target_rotation_rate):
+        if self.robot.navigation.initialized:
+            await self.robot.navigation.cancel_task()
         self._target_rotation_rate = _target_rotation_rate
         self._publish_velocity_command()
 
