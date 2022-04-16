@@ -18,6 +18,7 @@ class Robot:
             raise exception
         if self.props.get('sim') != True and self.props.get('ros1_port'):
             self.start_ros1_bridge()
+        self.runtime.ros_interface.init_tf(self.props.get('sim'))
         if self.props.get('sim') == True:
             block_until_gazebo_runs(self.runtime)
 

@@ -5,6 +5,9 @@ from time import sleep
 import traceback
 
 import rclpy
+from rclpy.parameter import Parameter
+import tf2_ros
+
 from .launcher_process_main import launcher_process_main
 
 class RosInterface:
@@ -78,3 +81,12 @@ class RosInterface:
         if thread_check and not self.runtime.am_i_running_in_event_loop_thread():
             raise Exception('This function can only be called from event loop thread.')
         self._launch_description_queue.put(launch_description)
+
+    def init_tf(self, use_sim_time):
+        self.__node__.set_parameters([Parameter('use_sim_time', Parameter.Type.BOOL, use_sim_time or False)])
+        self.tf_buffer = tf2_ros.Buffer()
+        self.tf_listener = tf2_ros.TransformListener(self.tf_buffer, self.__node__)
+
+    def lookup_transform(self, target_frame, source_frame, *args, **kwargs):
+        time = rclpy.time.Time()
+        return self.tf_buffer.lookup_transform(target_frame, source_frame, time, *args, **kwargs)
