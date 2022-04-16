@@ -14,7 +14,7 @@ class Wheels:
         new_self = from_props(props, self.robot)
         if new_self is not None:
             self.robot.wheels = new_self
-            self.initialized = True
+            self.robot.wheels.initialized = True
 
 
     @runtime.run_in_event_loop

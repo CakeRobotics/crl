@@ -14,7 +14,7 @@ class Navigation:
         new_self = from_props(props, self.robot)
         if new_self is not None:
             self.robot.navigation = new_self
-            self.initialized = True
+            self.robot.navigation.initialized = True
 
 
     @runtime.run_in_event_loop
