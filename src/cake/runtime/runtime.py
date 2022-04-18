@@ -6,6 +6,7 @@ import threading
 import time
 
 from cake.ros.interface import RosInterface
+from cake.utils.is_running_as_test import is_running_as_test
 
 class Runtime:
     def __init__(self):
@@ -24,6 +25,8 @@ class Runtime:
 
     def register_signals(self):
         def handler(*args):
+            if is_running_as_test():
+                return
             self.shutdown()
             sys.exit(0)
         signal.signal(signal.SIGINT, handler)
