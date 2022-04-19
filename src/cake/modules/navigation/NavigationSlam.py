@@ -17,8 +17,8 @@ from .explore.random_walk import random_walk
 class NavigationSlam(Navigation):
     def __init__(self, robot, props):
         self.robot = robot
-        self._init_navigator()
         self._init_nodes(props)  # type: ignore
+        self._init_navigator()
 
     @run_in_event_loop
     async def _init_navigator(self):
@@ -31,6 +31,7 @@ class NavigationSlam(Navigation):
     async def _init_nodes(self, props):
         launch_description = generate_launch_description(props)
         self.robot.runtime.ros_interface.launch_external_nodes(launch_description)
+        self.robot.runtime.ros_interface.wait_for_node_to_activate('bt_navigator')
 
     @run_in_event_loop
     async def move_to(self, target_x, target_y, target_heading=None, wait_to_finish=True):
