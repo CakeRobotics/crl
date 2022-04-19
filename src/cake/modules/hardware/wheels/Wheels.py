@@ -17,6 +17,10 @@ class Wheels:
             self.robot.wheels.initialized = True
 
 
+    def shutdown(self):
+        pass
+
+
     @runtime.run_in_event_loop
     async def set_speed(self, target_speed):
         """

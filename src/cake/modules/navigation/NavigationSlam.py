@@ -27,6 +27,9 @@ class NavigationSlam(Navigation):
         initial_pose = PoseStamped()
         self.navigator.setInitialPose(initial_pose)
 
+    def shutdown(self):
+        self.navigator.destroy_node()
+
     @run_in_event_loop
     async def _init_nodes(self, props):
         launch_description = generate_launch_description(props)

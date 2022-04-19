@@ -1,3 +1,5 @@
+import asyncio
+
 from cake.modules.hardware.wheels.Wheels import Wheels
 from cake.modules.navigation.Navigation import Navigation
 from cake.runtime.runtime import Runtime
@@ -23,6 +25,7 @@ class Robot:
             block_until_gazebo_runs(self.runtime)
 
     def shutdown(self):
+        self.shutdown_modules()
         self.runtime.shutdown()
 
     def init_stub(self):
@@ -44,6 +47,15 @@ class Robot:
     def init_from_props(self):
         self.wheels.init(self.props)
         self.navigation.init(self.props)
+
+    def shutdown_modules(self):
+        @self.runtime.run_in_event_loop
+        async def body():
+            # Shutdown in reverse order
+            self.navigation.shutdown()
+            self.wheels.shutdown()
+            await asyncio.sleep(0.1)  # Allow rclpy to tick
+        body()
 
     def start_ros1_bridge(self):
         @self.runtime.run_in_event_loop

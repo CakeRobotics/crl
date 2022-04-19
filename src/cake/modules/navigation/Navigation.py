@@ -17,6 +17,10 @@ class Navigation:
             self.robot.navigation.initialized = True
 
 
+    def shutdown(self):
+        pass
+
+
     @runtime.run_in_event_loop
     async def explore(self, method='random_walk', timeout=None):
         """
