@@ -68,8 +68,7 @@ class Runtime:
         self.__loop_thread__.join()
 
         # Stop external nodes process
-        self.ros_interface.stop_launcher_process()
-        self.ros_interface._launcher_process.join()
+        self.ros_interface.stop_launcher_process__blocking()
 
     def start_task(self, coro):
         return asyncio.run_coroutine_threadsafe(coro, self.__loop__)

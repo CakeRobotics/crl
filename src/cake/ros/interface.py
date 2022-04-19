@@ -81,12 +81,17 @@ class RosInterface:
                 logging.info("Allowed inactive node only for the test environment.")
                 break
 
-    def stop_launcher_process(self):
-        # Stabilize
-        sleep(0.5)
-        # SEND SIGINT
+    def stop_launcher_process__blocking(self):
+        sleep(0.5) # Stabilize
         self._launcher_process._check_closed()
         self._launcher_process._popen._send_signal(signal.SIGINT)
+        self._launcher_process.join(timeout=10)
+        if not self._launcher_process._closed:
+            # Launcher typically escalates to SIGKILL after 5 seconds, so
+            # this piece only handles the rare cases in which the launcher
+            # itself freezes.
+            self._launcher_process._popen._send_signal(signal.SIGKILL)
+            self._launcher_process.join()
 
     def create_publisher(self, *args, thread_check=True):
         if thread_check and not self.runtime.am_i_running_in_event_loop_thread():
