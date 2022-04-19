@@ -1,14 +1,17 @@
 import asyncio
+import logging
 from multiprocessing import Process, Queue
 import signal
 from time import sleep
 import traceback
 
+from lifecycle_msgs.srv import GetState
 import rclpy
 from rclpy.parameter import Parameter
 import tf2_ros
 
 from .launcher_process_main import launcher_process_main
+from cake.utils.is_running_as_test import is_running_as_test
 
 class RosInterface:
     def __init__(self, runtime):
@@ -59,6 +62,24 @@ class RosInterface:
             daemon=True,
         )
         self._launcher_process.start()
+
+    # TODO: make async?
+    # TODO: log if stuck
+    def wait_for_node_to_activate(self, node_name):
+        client = self.__node__.create_client(GetState, f'{node_name}/get_state')
+        while not client.wait_for_service(timeout_sec=1.0):
+            pass
+        req = GetState.Request()
+        while True:
+            future = client.call_async(req)
+            while not future.done():
+                rclpy.spin_once(self.__node__, timeout_sec=0)
+            state = future.result().current_state.label
+            if state == 'active':
+                break
+            elif state == 'inactive' and is_running_as_test():
+                logging.info("Allowed inactive node only for the test environment.")
+                break
 
     def stop_launcher_process(self):
         # Stabilize
