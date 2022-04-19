@@ -64,3 +64,21 @@ jobs:
           platforms: linux/amd64, linux/arm64
           push: true
           tags: cakerobotics/crl-dev:latest
+
+      - name: Login to On-site Registry
+        if: success() && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v1
+        with:
+          registry: oreg.cakerobotics.com
+          username: cakerobotics
+          password: ${{ secrets.OREG_TOKEN }}
+
+      - name: Push to On-site Registry
+        if: success() && github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/dev/Dockerfile
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: oreg.cakerobotics.com/crl-dev:latest
