@@ -20,9 +20,13 @@ autodoc_mock_imports = [
     'jinja2',
     'geometry_msgs',
     'launch',
+    'launch_ros',
+    'lifecycle_msgs',
+    'nav2_simple_commander',
     'rclpy',
     'rosgraph_msgs',
     'std_msgs',
+    'tf2_ros',
     'transforms3d',
     'yaml',
 ]
