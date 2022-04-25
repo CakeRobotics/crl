@@ -11,6 +11,7 @@ from cake.exceptions import Unimplemented
 from cake.runtime.runtime import run_in_event_loop
 from .external_nodes import generate_launch_description
 from .Navigation import Navigation
+from .explore.full_scan import FullScanAgent
 from .explore.random_walk import random_walk
 
 
@@ -96,5 +97,8 @@ class NavigationSlam(Navigation):
     async def explore(self, method='random_walk', timeout=None):
         if method == 'random_walk':
             await random_walk(self.robot, timeout=timeout)
+        elif method == 'full_scan':
+            full_scan_agent = FullScanAgent(self.robot, timeout=timeout)
+            await full_scan_agent.run()
         else:
             raise Unimplemented()
