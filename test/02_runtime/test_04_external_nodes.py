@@ -35,6 +35,6 @@ def test_external_nodes():
 
         assert incoming_msg.data == payload
 
-    body()  # type: ignore
+    body()
 
     robot.shutdown()

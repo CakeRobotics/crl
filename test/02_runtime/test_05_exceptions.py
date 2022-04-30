@@ -8,5 +8,5 @@ def test_exceptions_from_backend_loop():
     async def body():
         raise Exception("test-exception")
     with pytest.raises(Exception, match='test-exception'):
-        body()  # type: ignore
+        body()
     robot.shutdown()

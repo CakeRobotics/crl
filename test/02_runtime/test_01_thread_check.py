@@ -30,5 +30,5 @@ def test_ros_interface_thread_restriction():
     @robot.runtime.run_in_event_loop
     async def body():
         robot.runtime.ros_interface.create_publisher(String, '/something', 10)
-    body()  # type: ignore
+    body()
     robot.shutdown()

@@ -7,7 +7,7 @@ class WheelsBase(Wheels):
     def __init__(self, robot, _props):
         self.robot = robot
         self._set_initial_values()
-        self._init_topic_handles()  # type: ignore
+        self._init_topic_handles()
 
     def _set_initial_values(self):
         self._target_speed = 0

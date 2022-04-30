@@ -5,7 +5,7 @@ import cake
 def test_uninitialized():
     robot = cake.Robot({})
     with pytest.raises(cake.exceptions.UndefinedHardware):
-        robot.navigation.move_to(0, 0)  # type: ignore
+        robot.navigation.move_to(0, 0)
     robot.shutdown()
 
 
@@ -20,7 +20,7 @@ def test_initialized_without_wheels():
     }
     robot = cake.Robot(props)
     with pytest.raises(cake.exceptions.UndefinedHardware):
-        robot.navigation.move_to(0, 0)  # type: ignore
+        robot.navigation.move_to(0, 0)
     robot.shutdown()
 
 
@@ -35,7 +35,7 @@ def test_initialized_without_imu():
     }
     robot = cake.Robot(props)
     with pytest.raises(cake.exceptions.UndefinedHardware):
-        robot.navigation.move_to(0, 0)  # type: ignore
+        robot.navigation.move_to(0, 0)
     robot.shutdown()
 
 
@@ -50,7 +50,7 @@ def test_initialized_without_lidar():
     }
     robot = cake.Robot(props)
     with pytest.raises(cake.exceptions.UndefinedHardware):
-        robot.navigation.move_to(0, 0)  # type: ignore
+        robot.navigation.move_to(0, 0)
     robot.shutdown()
 
 
@@ -65,6 +65,6 @@ def test_initialized_with_all_parts():
         }
     }
     robot = cake.Robot(props)
-    robot.navigation.explore(timeout=1)  # type: ignore
-    robot.navigation.move_to(0, 0)  # type: ignore
+    robot.navigation.explore(timeout=1)
+    robot.navigation.move_to(0, 0)
     robot.shutdown()

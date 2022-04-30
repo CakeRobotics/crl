@@ -17,7 +17,7 @@ from .explore.random_walk import random_walk
 class NavigationSlam(Navigation):
     def __init__(self, robot, props):
         self.robot = robot
-        self._init_nodes(props)  # type: ignore
+        self._init_nodes(props)
         self._init_navigator()
 
     @run_in_event_loop

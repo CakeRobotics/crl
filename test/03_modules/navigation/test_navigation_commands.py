@@ -16,7 +16,7 @@ def test_init():
     }
     robot = cake.Robot(props)
     assert isinstance(robot.navigation, NavigationSlam)
-    robot.navigation.move_to(0, 0)  # type: ignore
+    robot.navigation.move_to(0, 0)
     robot.shutdown()
 
 
@@ -58,5 +58,5 @@ def test_explore():
         assert robot.wheels._target_speed == 0.0
         assert robot.wheels._target_rotation_rate == 0.0
 
-    body()  # type: ignore
+    body()
     robot.shutdown()

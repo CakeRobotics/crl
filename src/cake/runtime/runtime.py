@@ -4,6 +4,7 @@ import signal
 import sys
 import threading
 import time
+from typing import Any, Callable
 
 from cake.ros.interface import RosInterface
 from cake.utils.is_running_as_test import is_running_as_test
@@ -39,13 +40,13 @@ class Runtime:
         self._ros_interface_task = self.__loop__.create_task(self.ros_interface.spin_internal_coro()) # This is only one of many tasks in the loop. This task controls main ROS node.
         self.__loop__.run_forever()
         if not self._shutting_down:
-            raise self._ros_interface_task.exception()
+            raise self._ros_interface_task.exception() or Exception('Internal loop exited but the reason is unknown.')
             # os.kill(os.getpid(), signal.SIGINT)
 
     def assert_ros_interface_ok(self):
         task = self._ros_interface_task
         if task.done():
-            raise task.exception()  # type: ignore
+            raise task.exception() or Exception('Internal loop exited but the reason is unknown.')
 
     def shutdown(self):
         # Enable _shutting_down flag so that backend_loop being stopped
@@ -73,7 +74,7 @@ class Runtime:
     def start_task(self, coro):
         return asyncio.run_coroutine_threadsafe(coro, self.__loop__)
 
-    def run_in_event_loop(self, async_function):
+    def run_in_event_loop(self, async_function) -> Callable[..., Any]:
         @functools.wraps(async_function)
         def wrapper(*args, **kwargs):
             future = self.start_task(async_function(*args, **kwargs))
@@ -94,7 +95,7 @@ class Runtime:
 # to self.robot.runtime before initialization.
 # The trick involves using self.robot.runtime, so make sure that
 # your class assigns a reference to the Robot object at __init__.
-def run_in_event_loop(async_function):
+def run_in_event_loop(async_function) -> Callable[..., Any]:
     @functools.wraps(async_function)
     def wrapper(self, *args, **kwargs):
         if self.robot.runtime.am_i_running_in_event_loop_thread():

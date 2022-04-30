@@ -5,7 +5,7 @@ import cake
 def test_uninitialized():
     robot = cake.Robot({})
     with pytest.raises(cake.exceptions.UndefinedHardware):
-        robot.wheels.set_speed(2)  # type: ignore
+        robot.wheels.set_speed(2)
     robot.shutdown()
 
 
@@ -16,7 +16,7 @@ def test_initialized_without_wheels():
     }
     robot = cake.Robot(props)
     with pytest.raises(cake.exceptions.UndefinedHardware):
-        robot.wheels.set_speed(2)  # type: ignore
+        robot.wheels.set_speed(2)
     robot.shutdown()
 
 
@@ -47,5 +47,5 @@ def test_initialized():
         }
     }
     robot = cake.Robot(props)
-    robot.wheels.set_speed(2)  # type: ignore
+    robot.wheels.set_speed(2)
     robot.shutdown()

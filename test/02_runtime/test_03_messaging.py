@@ -31,6 +31,6 @@ def test_ros_messaging():
         assert incoming_msg.data == payload
 
     for _ in range(10):
-        body()  # type: ignore
+        body()
 
     robot.shutdown()

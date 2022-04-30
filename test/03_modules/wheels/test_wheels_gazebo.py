@@ -17,7 +17,7 @@ def test_init():
     }
     robot = cake.Robot(props)
     assert isinstance(robot.wheels, WheelsGazebo)
-    robot.wheels.set_speed(2)  # type: ignore
+    robot.wheels.set_speed(2)
     robot.shutdown()
 
 
@@ -45,7 +45,7 @@ def test_set_speed():
         robot.runtime.assert_ros_interface_ok()
         assert posted_target_speed == 2
 
-    body()  # type: ignore
+    body()
     robot.shutdown()
 
 
@@ -73,5 +73,5 @@ def test_set_rotation_rate():
         robot.runtime.assert_ros_interface_ok()
         assert posted_target_speed == 3
 
-    body()  # type: ignore
+    body()
     robot.shutdown()
