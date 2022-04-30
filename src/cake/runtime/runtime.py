@@ -8,9 +8,11 @@ from typing import Any, Callable
 
 from cake.ros.interface import RosInterface
 from cake.utils.is_running_as_test import is_running_as_test
+from cake.utils.setup_logging import setup_logging
 
 class Runtime:
     def __init__(self):
+        setup_logging()
         self.ros_interface_initialized = False
         self._shutting_down = False
         self.__loop__ = asyncio.new_event_loop()
