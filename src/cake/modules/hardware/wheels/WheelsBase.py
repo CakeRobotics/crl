@@ -13,6 +13,10 @@ class WheelsBase(Wheels):
         self._target_speed = 0
         self._target_rotation_rate = 0
 
+    async def shutdown(self):
+        await self.set_speed(0.0)
+        await self.set_rotation_rate(0.0)
+
     @run_in_event_loop
     async def _init_topic_handles(self):
         self._velocity_publisher = self.robot.runtime.ros_interface.create_publisher(
