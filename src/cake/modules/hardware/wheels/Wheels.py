@@ -17,7 +17,7 @@ class Wheels:
             self.robot.wheels.initialized = True
 
 
-    def shutdown(self):
+    async def shutdown(self):
         pass
 
 

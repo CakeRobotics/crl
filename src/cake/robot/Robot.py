@@ -52,8 +52,8 @@ class Robot:
         @self.runtime.run_in_event_loop
         async def body():
             # Shutdown in reverse order
-            self.navigation.shutdown()
-            self.wheels.shutdown()
+            await self.navigation.shutdown()
+            await self.wheels.shutdown()
             await asyncio.sleep(0.1)  # Allow rclpy to tick
         body()
 

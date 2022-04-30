@@ -27,7 +27,7 @@ class NavigationSlam(Navigation):
         initial_pose = PoseStamped()
         self.navigator.setInitialPose(initial_pose)
 
-    def shutdown(self):
+    async def shutdown(self):
         # Upstream improvement proposed: https://github.com/ros-planning/navigation2/pull/2924
         self.navigator.nav_through_poses_client.destroy()
         self.navigator.nav_to_pose_client.destroy()

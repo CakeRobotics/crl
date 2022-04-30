@@ -17,7 +17,7 @@ class Navigation:
             self.robot.navigation.initialized = True
 
 
-    def shutdown(self):
+    async def shutdown(self):
         pass
 
 
