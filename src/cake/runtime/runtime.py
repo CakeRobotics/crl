@@ -11,8 +11,9 @@ from cake.utils.is_running_as_test import is_running_as_test
 from cake.utils.setup_logging import setup_logging
 
 class Runtime:
-    def __init__(self):
+    def __init__(self, robot):
         setup_logging()
+        self.robot = robot
         self.ros_interface_initialized = False
         self._shutting_down = False
         self.__loop__ = asyncio.new_event_loop()
@@ -30,7 +31,7 @@ class Runtime:
         def handler(*args):
             if is_running_as_test():
                 return
-            self.shutdown()
+            self.robot.shutdown()
             sys.exit(0)
         signal.signal(signal.SIGINT, handler)
         signal.signal(signal.SIGTERM, handler)

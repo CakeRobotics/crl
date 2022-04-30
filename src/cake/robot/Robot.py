@@ -11,7 +11,7 @@ import cake.ros.ros1_bridge_external_nodes as ros1_bridge_external_nodes
 class Robot:
     def __init__(self, props=None):
         self.init_stub()
-        self.runtime = Runtime()
+        self.runtime = Runtime(self)
         try:
             self.load_props(props)
             self.init_from_props()
