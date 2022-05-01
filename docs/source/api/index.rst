@@ -42,6 +42,7 @@ Props file contains the following top level keys and values:
 - ``sim``: Whether or not this is a simulation *(default: false)*
 - ``hardware``: Hardware of the robot. See the section below.
 - ``ros1_port``: ROS 1 master port *(required if robot uses ROS 1 driver)*
+- ``body_size``: Longest dimention of the robot in meters *(default: 0.5)*
 
 Hardware Definitions
 _____________________

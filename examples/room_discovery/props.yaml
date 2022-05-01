@@ -2,6 +2,7 @@ name: simple-sway
 
 sim: true
 sim_robot: diff_drive_lidar
+body_size: 0.5
 
 hardware:
   wheels-1:

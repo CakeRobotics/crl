@@ -10,6 +10,7 @@ from cake.utils.deep_update import deep_update
 
 def generate_launch_description(props):
     use_sim_time = props.get('sim') or False
+    robot_radius = props.get('body_size') or 0.5
     bringup_dir = get_package_share_directory('nav2_bringup')
     with open(join(bringup_dir, 'params', 'nav2_params.yaml')) as f:
         params = yaml.safe_load(f)
@@ -22,7 +23,21 @@ def generate_launch_description(props):
                     'yaw_goal_tolerance': 1.67 # TODO: Reduce / Fix / Make dynamic
                 }
             }
-        }
+        },
+        'local_costmap': {
+            'local_costmap': {
+                'ros__parameters': {
+                    'robot_radius': robot_radius
+                }
+            }
+        },
+        'global_costmap': {
+            'global_costmap': {
+                'ros__parameters': {
+                    'robot_radius': robot_radius
+                }
+            }
+        },
     })
     params_path = '/tmp/cake_navigation_params.yaml'
     with open(params_path, 'w') as f:
