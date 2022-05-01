@@ -1,7 +1,7 @@
 <div align="center">
-    <img width="600" src="https://cakerobotics.com/crl.svg?cachebust=166vew">
+    <img width="600" src="https://cakerobotics.com/crl.png">
     <br/>
-    <img src="https://github.com/m2-farzan/ros2-galactic-PKGBUILD/actions/workflows/test.yaml/badge.svg?branch=extended">
+    <img src="https://github.com/cakerobotics/crl/actions/workflows/main.yaml/badge.svg?branch=main">
     <a href="https://cakerobotics.github.io/crl/docs/latest">
         <img src="https://img.shields.io/static/v1?label=&message=Full Documentation&color=9478ad">
     </a>
