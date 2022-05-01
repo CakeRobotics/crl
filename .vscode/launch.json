@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src:/opt/ros/galactic/lib/python3.8/site-packages:${env:PYTHONPATH}",
+                "LOGLEVEL": "debug"
+            }
+        },
+        {
             "name": "Pytest ALL",
             "type": "python",
             "request": "launch",
@@ -13,7 +25,9 @@
                 "-x",
                 "--ignore=examples"
             ],
-            "env": {"PYTHONPATH": "${workspaceFolder}/src:/opt/ros/galactic/lib/python3.8/site-packages:${env:PYTHONPATH}"}
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src:/opt/ros/galactic/lib/python3.8/site-packages:${env:PYTHONPATH}"
+            }
         },
         {
             "name": "Pytest Last Failed",
@@ -23,15 +37,24 @@
             "args": [
                 "--lf"
             ],
-            "env": {"PYTHONPATH": "${workspaceFolder}/src:/opt/ros/galactic/lib/python3.8/site-packages:${env:PYTHONPATH}"}
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src:/opt/ros/galactic/lib/python3.8/site-packages:${env:PYTHONPATH}"
+            }
         },
         {
             "name": "Pytest Current File",
             "type": "python",
             "request": "launch",
             "module": "pytest",
-            "args": ["-x", "-s", "-v", "${file}"],
-            "env": {"PYTHONPATH": "${workspaceFolder}/src:/opt/ros/galactic/lib/python3.8/site-packages:${env:PYTHONPATH}"}
+            "args": [
+                "-x",
+                "-s",
+                "-v",
+                "${file}"
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src:/opt/ros/galactic/lib/python3.8/site-packages:${env:PYTHONPATH}"
+            }
         },
     ]
 }
