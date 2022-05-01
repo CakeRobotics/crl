@@ -39,8 +39,8 @@ class Runtime:
     def start_event_loop(self):
         self.ros_interface = RosInterface(self)
         self.ros_interface.start_launcher_process()
-        self.ros_interface_initialized = True
         self._ros_interface_task = self.__loop__.create_task(self.ros_interface.spin_internal_coro()) # This is only one of many tasks in the loop. This task controls main ROS node.
+        self.ros_interface_initialized = True
         self.__loop__.run_forever()
         if not self._shutting_down:
             raise self._ros_interface_task.exception() or Exception('Internal loop exited but the reason is unknown.')
