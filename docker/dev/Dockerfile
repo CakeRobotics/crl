@@ -16,7 +16,20 @@
 FROM ros:galactic-ros-base-focal
 
 RUN apt-get update
-RUN apt-get install -y \
+
+COPY docker/dev/mock.bash /mock.bash
+RUN /mock.bash \
+    libqt5widgets5=5.0.2 \
+    libqt5gui5 \
+    libqt5opengl5 \
+    ros-galactic-nav2-rviz-plugins \
+    ros-galactic-nav2-waypoint-follower \
+    ros-galactic-rviz-common \
+    ros-galactic-rviz-default-plugins \
+    ros-galactic-rviz-ogre-vendor \
+    ros-galactic-rviz-rendering
+
+RUN apt-get install -y --no-install-recommends \
     curl \
     python3-pip \
     ros-galactic-navigation2 \
@@ -28,11 +41,7 @@ RUN apt-get install -y \
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
     bash -c 'curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -' && \
     apt-get update && \
-    apt-get install -y ros-galactic-ros1-bridge
-
-RUN pip3 install \
-    numpy \
-    scipy
+    apt-get install -y --no-install-recommends ros-galactic-ros1-bridge
 
 # Nasty backport (delete after upgrading to python 3.9)
 RUN curl https://raw.githubusercontent.com/python/cpython/3.9/Lib/asyncio/events.py \
