@@ -41,7 +41,9 @@ RUN apt-get install -y --no-install-recommends \
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
     bash -c 'curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -' && \
     apt-get update && \
-    apt-get install -y --no-install-recommends ros-galactic-ros1-bridge
+    apt-get install -y --no-install-recommends \
+        ros-noetic-ros-base \
+        ros-galactic-ros1-bridge
 
 # Nasty backport (delete after upgrading to python 3.9)
 RUN curl https://raw.githubusercontent.com/python/cpython/3.9/Lib/asyncio/events.py \
