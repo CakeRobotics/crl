@@ -19,11 +19,11 @@ RUN apt-get update
 
 COPY docker/dev/mock.bash /mock.bash
 RUN /mock.bash \
-    libqt5widgets5=5.0.2 \
+    libopencv-dev \
     libqt5gui5 \
     libqt5opengl5 \
+    libqt5widgets5=5.0.2 \
     ros-galactic-nav2-rviz-plugins \
-    ros-galactic-nav2-waypoint-follower \
     ros-galactic-rviz-common \
     ros-galactic-rviz-default-plugins \
     ros-galactic-rviz-ogre-vendor \
