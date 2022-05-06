@@ -5,6 +5,7 @@ from math import atan2
 from builtin_interfaces.msg import Time
 from geometry_msgs.msg import Point, Pose, PoseStamped, Quaternion
 from std_msgs.msg import Header
+from tf2_ros import LookupException
 from transforms3d.euler import euler2quat, quat2euler
 from nav2_simple_commander.robot_navigator import BasicNavigator
 
@@ -48,8 +49,11 @@ class NavigationSlam(Navigation):
     async def move_to(self, target_x, target_y, target_heading=None, wait_to_finish=True):
         if target_heading is None:
             # Use connecting line direction as target heading
-            robot_x, robot_y, _ = await self.get_position()
-            target_heading = atan2(target_y - robot_y, target_x - robot_x)
+            try:
+                robot_x, robot_y, _ = await self.get_position()
+                target_heading = atan2(target_y - robot_y, target_x - robot_x)
+            except LookupException:
+                target_heading = 0.0
         Qw, Qx, Qy, Qz = euler2quat(0.0, 0.0, float(target_heading), 'sxyz')
         pose_stamped = PoseStamped(
             header=Header(
