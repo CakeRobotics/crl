@@ -35,7 +35,7 @@ def test_explore():
     async def body():
         assert robot.wheels._target_speed == 0
         robot.runtime.start_task(
-            robot.navigation.explore(timeout=1)
+            robot.navigation.explore(timeout=1, method='random_walk_open_loop')
         )
         await asyncio.sleep(0.5)
         assert robot.wheels._target_speed > 0
@@ -43,7 +43,7 @@ def test_explore():
         assert robot.wheels._target_speed == 0
 
         robot.runtime.start_task(
-            robot.navigation.explore(timeout=8, method='random_walk')
+            robot.navigation.explore(timeout=8, method='random_walk_open_loop')
         )
         await asyncio.sleep(0.1)
         assert robot.wheels._target_speed == 0.2

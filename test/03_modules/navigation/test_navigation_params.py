@@ -65,6 +65,6 @@ def test_initialized_with_all_parts():
         }
     }
     robot = cake.Robot(props)
-    robot.navigation.explore(timeout=1)
+    robot.navigation.explore(timeout=1, method='random_walk_open_loop')
     robot.navigation.move_to(0, 0)
     robot.shutdown()
