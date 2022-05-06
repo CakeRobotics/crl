@@ -80,14 +80,14 @@ class NavigationSlam(Navigation):
     @run_in_event_loop
     async def get_position(self):
         # P = self.navigator.getFeedback().current_pose.pose.position
-        transform_stamped = self.robot.runtime.ros_interface.lookup_transform('base_link', 'map')
+        transform_stamped = self.robot.runtime.ros_interface.lookup_transform('map', 'base_link')
         P = transform_stamped.transform.translation
         return P.x, P.y, P.z
 
     @run_in_event_loop
     async def get_heading(self):
         # Q = self.navigator.getFeedback().current_pose.pose.orientation
-        transform_stamped = self.robot.runtime.ros_interface.lookup_transform('base_link', 'map')
+        transform_stamped = self.robot.runtime.ros_interface.lookup_transform('map', 'base_link')
         Q = transform_stamped.transform.rotation
         heading, _, _ = quat2euler((Q.x, Q.y, Q.z, Q.w), 'sxyz')  # FIXME; Unstable
         return heading
