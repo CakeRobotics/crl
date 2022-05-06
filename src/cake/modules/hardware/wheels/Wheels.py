@@ -49,6 +49,13 @@ class Wheels:
         """
         self._raise_undefined_or_unimplemented()
 
+    @runtime.run_in_event_loop
+    async def stop(self):
+        """
+        Stops the wheels.
+        """
+        self._raise_undefined_or_unimplemented()
+
 
     def _raise_undefined_or_unimplemented(self):
         if self.initialized:

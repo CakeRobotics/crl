@@ -14,8 +14,7 @@ class WheelsBase(Wheels):
         self._target_rotation_rate = 0
 
     async def shutdown(self):
-        await self.set_speed(0.0)
-        await self.set_rotation_rate(0.0)
+        await self.stop()
 
     @run_in_event_loop
     async def _init_topic_handles(self):
@@ -36,6 +35,11 @@ class WheelsBase(Wheels):
             await self.robot.navigation.cancel_task()
         self._target_rotation_rate = _target_rotation_rate
         self._publish_velocity_command()
+
+    @run_in_event_loop
+    async def stop(self):
+        await self.set_speed(0.0)
+        await self.set_rotation_rate(0.0)
 
     def _publish_velocity_command(self):
         msg = Twist()
