@@ -22,12 +22,15 @@ autodoc_mock_imports = [
     'launch',
     'launch_ros',
     'lifecycle_msgs',
+    'nav_msgs',
     'nav2_simple_commander',
+    'numpy',
     'rclpy',
     'rosgraph_msgs',
     'std_msgs',
     'tf2_ros',
     'transforms3d',
+    'visualization_msgs',
     'yaml',
 ]
 
