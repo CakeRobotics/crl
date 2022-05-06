@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from math import atan2
 
 from builtin_interfaces.msg import Time
 from geometry_msgs.msg import Point, Pose, PoseStamped, Quaternion
@@ -44,7 +45,11 @@ class NavigationSlam(Navigation):
 
     @run_in_event_loop
     async def move_to(self, target_x, target_y, target_heading=None, wait_to_finish=True):
-        Qw, Qx, Qy, Qz = euler2quat(0.0, 0.0, float(target_heading or 0.0), 'sxyz')
+        if target_heading is None:
+            # Use connecting line direction as target heading
+            robot_x, robot_y, _ = await self.get_position()
+            target_heading = atan2(target_y - robot_y, target_x - robot_x)
+        Qw, Qx, Qy, Qz = euler2quat(0.0, 0.0, float(target_heading), 'sxyz')
         pose_stamped = PoseStamped(
             header=Header(
                 stamp=Time(sec=1),
