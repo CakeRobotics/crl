@@ -13,6 +13,7 @@ from cake.runtime.runtime import run_in_event_loop
 from .external_nodes import generate_launch_description
 from .Navigation import Navigation
 from .explore.random_walk import random_walk
+from .explore.random_walk_open_loop import random_walk_open_loop
 
 
 class NavigationSlam(Navigation):
@@ -101,5 +102,7 @@ class NavigationSlam(Navigation):
     async def explore(self, method='random_walk', timeout=None):
         if method == 'random_walk':
             await random_walk(self.robot, timeout=timeout)
+        elif method == 'random_walk_open_loop':
+            await random_walk_open_loop(self.robot, timeout=timeout)
         else:
             raise Unimplemented()

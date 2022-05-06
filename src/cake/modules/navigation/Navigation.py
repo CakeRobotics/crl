@@ -29,7 +29,7 @@ class Navigation:
         Parameters
         ----------
         method
-            Exploration method: only 'random_walk' for now.
+            Exploration method: 'random_walk' (default) | 'random_walk_open_loop' (Open-loop i.e. may hit obstacles)
 
         timeout
             Duration of exploration in seconds.
