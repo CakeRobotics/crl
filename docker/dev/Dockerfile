@@ -15,7 +15,8 @@
 
 FROM ros:galactic-ros-base-focal
 
-RUN apt-get update
+RUN apt-get update && \
+    apt-get dist-upgrade -y
 
 COPY docker/dev/mock.bash /mock.bash
 RUN /mock.bash \
