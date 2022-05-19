@@ -1,3 +1,5 @@
+import asyncio
+
 from cake.runtime.runtime import run_in_event_loop
 from geometry_msgs.msg import Twist, Vector3
 import rclpy.qos
@@ -8,6 +10,7 @@ class WheelsBase(Wheels):
         self.robot = robot
         self._set_initial_values()
         self._init_topic_handles()
+        self._start_publish_loop()
 
     def _set_initial_values(self):
         self._target_speed = 0
@@ -40,6 +43,13 @@ class WheelsBase(Wheels):
     async def stop(self):
         await self.set_speed(0.0)
         await self.set_rotation_rate(0.0)
+
+    def _start_publish_loop(self):
+        async def runner():
+            while True:
+                self._publish_velocity_command()
+                await asyncio.sleep(0.01)
+        self.robot.runtime.start_task(runner())
 
     def _publish_velocity_command(self):
         msg = Twist()
