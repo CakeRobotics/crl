@@ -2,6 +2,7 @@ import asyncio
 
 from cake.modules.hardware.wheels.Wheels import Wheels
 from cake.modules.navigation.Navigation import Navigation
+from cake.modules.fleet.Fleet import Fleet
 from cake.runtime.runtime import Runtime
 from cake.utils.block_until_gazebo_runs import block_until_gazebo_runs
 from cake.utils.load_props_from_file import load_props_from_file
@@ -31,6 +32,7 @@ class Robot:
     def init_stub(self):
         self.wheels = Wheels(self)
         self.navigation = Navigation(self)
+        self.fleet = Fleet(self)
 
     def load_props(self, explicitly_provided_props):
         if explicitly_provided_props is not None:
@@ -47,12 +49,14 @@ class Robot:
     def init_from_props(self):
         self.wheels.init(self.props)
         self.navigation.init(self.props)
+        self.fleet.init(self.props)
 
     def shutdown_modules(self):
         @self.runtime.run_in_event_loop
         async def body():
             await self.wheels.shutdown()
             await self.navigation.shutdown()
+            await self.fleet.shutdown()
             await asyncio.sleep(0.1)  # Allow rclpy to tick
         body()
 

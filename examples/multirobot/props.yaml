@@ -1,0 +1,18 @@
+name: simple-mrpp
+
+sim: true
+sim_robot: diff_drive_lidar
+body_size: 0.5
+
+hardware:
+  wheels-1:
+    type: wheels
+  imu-1:
+    type: imu
+  lidar-1:
+    type: lidar
+
+fleet:
+  fleet_key: default
+  environment_model: structured
+  robot_id: GENERATE
