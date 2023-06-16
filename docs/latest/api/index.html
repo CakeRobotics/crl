@@ -1,0 +1,545 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="Full Reference" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cakerobotics.com/api/index.html" />
+  <meta property="og:description" content="Props File: About Props File: Props can be provided in three ways: Using the cloud service UI: In this case, you don’t need to read this section because the user interface is self-explaining. The f..." />
+  <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Engineering Concepts" href="../concepts.html" /><link rel="prev" title="Basics" href="../basics.html" />
+
+    <meta name="generator" content="sphinx-4.2.0, furo 2021.09.22"/>
+        <title>Full Reference - Cake Robot Library</title>
+      <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../static/styles/furo.css?digest=150e365fa939648e89c22f6d7d13c72a1657915a" />
+    <link rel="stylesheet" type="text/css" href="../static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
+    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Cake Robot Library</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../static/logo.svg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Cake Robot Library</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics.html">Basics</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Full Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Developer's Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Engineering Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bare.html">Bare-metal Installation</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div class="section" id="full-reference">
+<span id="id1"></span><h1>Full Reference<a class="headerlink" href="#full-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="props-file">
+<h2>Props File<a class="headerlink" href="#props-file" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="about-props-file">
+<h3>About Props File<a class="headerlink" href="#about-props-file" title="Permalink to this headline">¶</a></h3>
+<p>Props can be provided in three ways:</p>
+<ol class="arabic simple">
+<li><p><strong>Using the cloud service UI:</strong> In this case, you don’t need to read
+this section because the user interface is self-explaining. The file will be
+generated from your settings, and will be passed to the appropriate services
+transparently.</p></li>
+<li><p><strong>As a static YAML or JSON file:</strong> This is the recommended way if you’re not
+using the cloud service. In this method, a file named <code class="docutils literal notranslate"><span class="pre">props.yaml</span></code> or
+<code class="docutils literal notranslate"><span class="pre">props.json</span></code> is used to specify project props. In both cases, a props
+object is described. The schema for the props object is specified in the
+following lines. YAML is generally considered better than JSON for the files
+that are to be manually maintained.</p></li>
+</ol>
+<p>3. <strong>As a python Dict object</strong>: This method is more flexible, as the dict is
+dynamically generated. However, you probably shouldn’t use it as it makes the
+project more complicated. Also, this variant can’t be used with <em>bundler</em>.</p>
+</div>
+<div class="section" id="specifications">
+<h3>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="top-level-keys">
+<h4>Top Level Keys<a class="headerlink" href="#top-level-keys" title="Permalink to this headline">¶</a></h4>
+<p>Props file contains the following top level keys and values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Name of the project</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">author</span></code>: Author of the project <em>(optional)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip_requirements</span></code>: PyPI dependencies <em>(required if using bundler)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim</span></code>: Whether or not this is a simulation <em>(default: false)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hardware</span></code>: Hardware of the robot. See the section below.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ros1_port</span></code>: ROS 1 master port <em>(required if robot uses ROS 1 driver)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">body_size</span></code>: Longest dimention of the robot in meters <em>(default: 0.5)</em></p></li>
+</ul>
+</div>
+<div class="section" id="hardware-definitions">
+<h4>Hardware Definitions<a class="headerlink" href="#hardware-definitions" title="Permalink to this headline">¶</a></h4>
+<p>Hardware props go under <code class="docutils literal notranslate"><span class="pre">hardware</span></code> key of the props file. Each set of hardware
+(e.g. wheels, camera, lidar)
+is denoted by a unique <strong>key</strong> and a <strong>value object</strong>. The latter defines
+properties of robot hardware, and is passed to the corresponding hardware module.
+Therefore, the schema of <strong>value object</strong> depends on the type of hardware that is
+to be defined. In fact, the only key that is fixed in the <strong>value object</strong> is
+<code class="docutils literal notranslate"><span class="pre">type</span></code> itself, which is used to determine the parser class of the hardware
+part.</p>
+<p>To understand the schema for each type of hardware, see <em>Hardware Modules</em>
+documentation. TODO: add hyperlink.</p>
+<div class="admonition-example-props-file admonition">
+<p class="admonition-title">Example props file</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">An Example Robot Program</span>
+<span class="nt">pip_requirements</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">numpy</span>
+<span class="nt">hardware</span><span class="p">:</span>
+    <span class="nt">camera-1</span><span class="p">:</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">camera</span>
+        <span class="nt">variant</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rgb</span>
+        <span class="nt">location</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10, 0, 5 cm</span>
+        <span class="nt">orientation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">front-facing</span>
+        <span class="nt">fov</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60 deg</span>
+        <span class="nt">connection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">usb</span>
+
+    <span class="nt">wheels-1</span><span class="p">:</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wheels</span>
+        <span class="nt">steering</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ackermann</span>
+        <span class="nt">locations</span><span class="p">:</span>
+            <span class="nt">front-axis</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3, 0, 0 cm</span>
+            <span class="nt">back-axis</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">14, 0, 0 cm</span>
+        <span class="nt">actuated-wheels</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">back</span>
+        <span class="nt">max-torque</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10 N.cm</span>
+        <span class="nt">max-steering</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20 deg</span>
+        <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dca-440</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="robot-object">
+<h2>Robot object<a class="headerlink" href="#robot-object" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="robot-navigation">
+<span id="navigation"></span><h3>robot.navigation<a class="headerlink" href="#robot-navigation" title="Permalink to this headline">¶</a></h3>
+<p>This object can be used to map the environment and move to a target position.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cake.modules.navigation.from_props.from_props">
+<span class="sig-name descname"><span class="pre">from_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">props</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.from_props.from_props" title="Permalink to this definition">¶</a></dt>
+<dd><p>This object becomes available automaically if all the following conditions are met:</p>
+<ul class="simple">
+<li><p>At least one hardware with type=wheels is defined in the props file.</p></li>
+<li><p>At least one hardware with type=imu is defined in the props file.</p></li>
+<li><p>At least one hardware with type=lidar is defined in the props file.</p></li>
+</ul>
+<p>Supporting more hardware systems is on our todo list.</p>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cake.modules.navigation.Navigation.Navigation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Navigation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.Navigation.Navigation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.navigation.Navigation.Navigation.cancel_task">
+<span class="sig-name descname"><span class="pre">cancel_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.Navigation.Navigation.cancel_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancels the pending task.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.navigation.Navigation.Navigation.explore">
+<span class="sig-name descname"><span class="pre">explore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'random_walk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.Navigation.Navigation.explore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Explores the room and generates a map using SLAM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> – Exploration method: ‘random_walk’ (default) | ‘random_walk_open_loop’ (Open-loop i.e. may hit obstacles)</p></li>
+<li><p><strong>timeout</strong> – Duration of exploration in seconds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.navigation.Navigation.Navigation.get_heading">
+<span class="sig-name descname"><span class="pre">get_heading</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.Navigation.Navigation.get_heading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns robot heading in radians from -pi to pi.</p>
+<p>In SLAM mode with no existing map, the starting heading is zero.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.navigation.Navigation.Navigation.get_position">
+<span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.Navigation.Navigation.get_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns robot position as a tuple of (x, y, z) in meters from the origin.</p>
+<p>In SLAM mode with no existing map, the starting point is the origin.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.navigation.Navigation.Navigation.is_task_complete">
+<span class="sig-name descname"><span class="pre">is_task_complete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.Navigation.Navigation.is_task_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether or not the last task is finished.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.navigation.Navigation.Navigation.move_to">
+<span class="sig-name descname"><span class="pre">move_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_heading</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_to_finish</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.Navigation.Navigation.move_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves the robot to the target position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_x</strong> – X-location of the target.
+If the robot is performing in SLAM mode, origin will be the
+starting point and x will correspond to right direction at starting moment.</p></li>
+<li><p><strong>target_y</strong> – y-location of the target.
+If the robot is performing in SLAM mode, origin will be the
+starting point and y will correspond to forward direction at starting moment.</p></li>
+<li><p><strong>target_heading</strong> – Target heading in radians. Optional.</p></li>
+<li><p><strong>wait_to_finish</strong> – Defaults to False. If set to True, the method will block the execution of the
+next lines of code until the movement is completed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.navigation.Navigation.Navigation.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.navigation.Navigation.Navigation.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancels the pending task and stops immediately.</p>
+</dd></dl>
+</dd></dl>
+</div>
+<div class="section" id="robot-wheels">
+<h3>robot.wheels<a class="headerlink" href="#robot-wheels" title="Permalink to this headline">¶</a></h3>
+<p>This object controls the wheels in a low-level manner.
+See <a class="reference internal" href="#navigation"><span class="std std-ref">robot.navigation</span></a> for a high-level alternative.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cake.modules.hardware.wheels.from_props.from_props">
+<span class="sig-name descname"><span class="pre">from_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">props</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.hardware.wheels.from_props.from_props" title="Permalink to this definition">¶</a></dt>
+<dd><div class="table-wrapper"><table class="colwidths-given docutils align-default" id="id2" style="width: 90%">
+<caption><span class="caption-text">Global props read by robot.wheels</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+<col style="width: 53%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sim</p></td>
+<td><p>boolean</p></td>
+<td><p>false</p></td>
+<td><p>If set to true, the simulation driver will be used.</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrapper"><table class="colwidths-given docutils align-default" id="id3" style="width: 90%">
+<caption><span class="caption-text">Hardware props read by robot.wheels</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+<col style="width: 53%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>driver</p></td>
+<td><p>‘ros2’ | ‘ros1’ | ‘dummy’ | None</p></td>
+<td><p>None</p></td>
+<td><p>Driver to use for the wheels. Required if sim != True.</p></td>
+</tr>
+<tr class="row-odd"><td><p>steering</p></td>
+<td><p>‘ackermann’ | ‘diff’</p></td>
+<td><p><em>required</em></p></td>
+<td><p>The steering method of the wheels.</p></td>
+</tr>
+</tbody>
+</table></div>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cake.modules.hardware.wheels.Wheels.Wheels">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Wheels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.hardware.wheels.Wheels.Wheels" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.hardware.wheels.Wheels.Wheels.set_rotation_rate">
+<span class="sig-name descname"><span class="pre">set_rotation_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_rotation_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.hardware.wheels.Wheels.Wheels.set_rotation_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets robot heading change rate to a desired value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target_rotation_rate</strong> – Desired angular velocity in rad/s.
+Direction of rotation is interpreted by the right-hand rule around
+upward z axis.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.hardware.wheels.Wheels.Wheels.set_speed">
+<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_speed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.hardware.wheels.Wheels.Wheels.set_speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets robot linear speed to a desired value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target_speed</strong> – Desired linear speed in m/s.
+Use negative numbers for backward motion.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cake.modules.hardware.wheels.Wheels.Wheels.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cake.modules.hardware.wheels.Wheels.Wheels.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the wheels.</p>
+</dd></dl>
+</dd></dl>
+</div>
+</div>
+</div>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../concepts.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Engineering Concepts</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../basics.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Basics</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Cake Robotics |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>. |
+            <a class="muted-link" href="../_sources/api/index.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Full Reference</a><ul>
+<li><a class="reference internal" href="#props-file">Props File</a><ul>
+<li><a class="reference internal" href="#about-props-file">About Props File</a></li>
+<li><a class="reference internal" href="#specifications">Specifications</a><ul>
+<li><a class="reference internal" href="#top-level-keys">Top Level Keys</a></li>
+<li><a class="reference internal" href="#hardware-definitions">Hardware Definitions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#robot-object">Robot object</a><ul>
+<li><a class="reference internal" href="#robot-navigation">robot.navigation</a></li>
+<li><a class="reference internal" href="#robot-wheels">robot.wheels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/underscore.js"></script>
+    <script src="../static/doctools.js"></script>
+    <script src="../static/scripts/main.js"></script>
+    <script src="../static/tabs.js"></script>
+    </body>
+</html>
