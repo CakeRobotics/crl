@@ -69,20 +69,20 @@ class NavigationSlam(Navigation):
         # Block
         if not wait_to_finish:
             return
-        while not self.navigator.isNavComplete(): # Will change to isTaskComplete
+        while not self.navigator.isTaskComplete():
             await asyncio.sleep(0.1)
 
     @run_in_event_loop
     async def is_task_complete(self):
-        return self.navigator.isNavComplete()
+        return self.navigator.isTaskComplete()
 
     @run_in_event_loop
     async def cancel_task(self):
-        self.navigator.cancelNav()
+        self.navigator.cancelTask()
 
     @run_in_event_loop
     async def stop(self):
-        self.navigator.cancelNav()
+        self.navigator.cancelTask()
         if self.robot.wheels.initialized:
             await self.robot.wheels.set_speed(0)
             await self.robot.wheels.set_rotation_rate(0)
