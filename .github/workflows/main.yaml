@@ -81,4 +81,4 @@ jobs:
           file: docker/dev/Dockerfile
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: oreg.cakerobotics.com/crl-dev:latest
+          tags: oreg.cakerobotics.com/crl-dev-predefense:latest
