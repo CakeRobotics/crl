@@ -1,12 +1,12 @@
 name: CI + CD
 
-on:
-  push:
-    paths-ignore:
-      - '**.md'
-      - '.vscode/**'
-      - 'docs/**'
-      - 'examples/**'
+# on:
+#   push:
+#     paths-ignore:
+#       - '**.md'
+#       - '.vscode/**'
+#       - 'docs/**'
+#       - 'examples/**'
 
 jobs:
   docker:
